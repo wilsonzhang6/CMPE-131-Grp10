@@ -1,7 +1,4 @@
-from flask import Flask
-
-# create an instance of Flask class
-app = Flask(__name__)
+from app import app
 
 # different URL the app will implement
 @app.route("/")
@@ -17,5 +14,3 @@ def hello():
         <h1>Hello, ''' + user['username'] + '''!</h1>
     </body>
 	</html>'''
-
-app.run()
