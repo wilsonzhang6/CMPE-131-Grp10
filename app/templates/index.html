@@ -1,6 +1,10 @@
 <html>
     <head>
+        {% if title %}
         <title>{{ title }} - my blog</title>
+        {% else %}
+        <title>Welcome to my blog!</title>
+        {% endif %}
     </head>
     <body>
         <h1>Hello, {{ user.username }}!</h1>
