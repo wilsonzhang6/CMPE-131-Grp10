@@ -1,3 +1,4 @@
+from flask import render_template
 from app import app
 
 # different URL the app will implement
@@ -5,12 +6,4 @@ from app import app
 # called view function
 def hello():
     user = {'username': 'Miguel'}
-    return '''
-	<html>
-    <head>
-        <title>Home Page - my blog</title>
-    </head>
-    <body>
-        <h1>Hello, ''' + user['username'] + '''!</h1>
-    </body>
-	</html>'''
+    return render_template('index.html', title='Home', user=user)
