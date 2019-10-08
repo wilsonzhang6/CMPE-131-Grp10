@@ -27,7 +27,7 @@ def index():
         }
     ]
     return render_template('index.html', title='Home', posts=posts)
-    
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -68,3 +68,8 @@ def register():
         flash('Congratulations, you have created an account!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+@app.route('/create', methods=['GET', 'POST'])
+def create():
+    form = CreateRoutineForm()
+    return render_template('createroutine', title='Create', form=form)
