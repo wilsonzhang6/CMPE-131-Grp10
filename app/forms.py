@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectMultipleField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectMultipleField, RadioField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import User
 
@@ -28,8 +28,16 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class CreateRoutineForm(FlaskForm):
-    title = StringField('Title');
-    day = SelectMultipleField(
-        'Days',
-        choices=[('mon', 'Monday'), ('tue', 'Tuesday'), ('wed', 'Wednesday'), ('thu', 'Thursday'), ('fri', 'Friday'), ('sat', 'Saturday'), ('sun', 'Sunday')]
-    );
+    title = StringField('Routine Title: ')
+    add = SubmitField('Add Task')
+
+class CreateTaskForm(FlaskForm):
+    monday = BooleanField('Monday')
+    tuesday = BooleanField('Tuesday')
+    wednesday = BooleanField('Wednesday')
+    thursday = BooleanField('Thursday')
+    friday = BooleanField('Friday')
+    saturday = BooleanField('Saturday')
+    sunday = BooleanField('Sunday')
+    task = StringField('Task: ')
+    submit = SubmitField('Submit')
