@@ -18,7 +18,7 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
-        return '<User {}>'.format(self.username)    
+        return '<User {}>'.format(self.username)
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -28,6 +28,18 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Posts {}>'.format(self.body)
+
+class Task(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    task = db.Column(db.String())
+    monday,tuesday,wednesday,thursday,friday,saturday,sunday = db.Column(db.Boolean())
+
+    def __repr__(self):
+        return '<Tasks {}>'.format(self.body)
+
+class Routine(db.Model):    #made up of Task classes
+    title = db.Column(db.String())
+    tasks = db.Column()
 
 @login.user_loader
 def load_user(id):
