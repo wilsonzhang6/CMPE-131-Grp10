@@ -5,9 +5,40 @@
 <body>
   <form action = "" method = "post" novalidate style = "font-family: monospace">
     {{form.title.label}}
-    {{form.title}}<br />
-    {{form.day.label}}
-    {{form.day}}
+    {{form.title}}
+    <br />
+    {{form.add}}
+    <br />
+    {{ showTaskForm }}
+    {% if showTaskForm %}
+      <div>
+        {{taskform.monday.label}}
+        {{taskform.monday}}
+        <br />
+        {{taskform.tuesday.label}}
+        {{form.tuesday}}
+        <br />
+        {{taskform.wednesday.label}}
+        {{taskform.wednesday}}
+        <br />
+        {{taskform.thursday.label}}
+        {{taskform.thursday}}
+        <br />
+        {{taskform.friday.label}}
+        {{taskform.friday}}
+        <br />
+        {{taskform.saturday.label}}
+        {{taskform.saturday}}
+        <br />
+        {{taskform.sunday.label}}
+        {{taskform.sunday}}
+        <br />
+        {{taskform.task.label}}
+        {{taskform.task}}
+        <br />
+        {{taskform.submit}}
+      </div>
+    {% endif %}
   </form>
 </body>
 
