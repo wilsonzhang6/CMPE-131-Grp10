@@ -3,42 +3,41 @@
 {% block content %}
 
 <body>
-  <form action = "" method = "post" novalidate style = "font-family: monospace">
+  <form action="" method="post"  style = "font-family: monospace">
+    {{form.hidden_tag()}}
     {{form.title.label}}
     {{form.title}}
+    <hr />
+    Add a task here!
+    <br />
+    Please choose which day you would like to do this task:
+    <br />
+    {{form.monday.label}}
+    {{form.monday}}
+    <br />
+    {{form.tuesday.label}}
+    {{form.tuesday}}
+    <br />
+    {{form.wednesday.label}}
+    {{form.wednesday}}
+    <br />
+    {{form.thursday.label}}
+    {{form.thursday}}
+    <br />
+    {{form.friday.label}}
+    {{form.friday}}
+    <br />
+    {{form.saturday.label}}
+    {{form.saturday}}
+    <br />
+    {{form.sunday.label}}
+    {{form.sunday}}
+    <br />
+    {{form.task.label}}
+    {{form.task}}
     <br />
     {{form.add}}
-    <br />
-    {{ showTaskForm }}
-    {% if showTaskForm %}
-      <div>
-        {{taskform.monday.label}}
-        {{taskform.monday}}
-        <br />
-        {{taskform.tuesday.label}}
-        {{form.tuesday}}
-        <br />
-        {{taskform.wednesday.label}}
-        {{taskform.wednesday}}
-        <br />
-        {{taskform.thursday.label}}
-        {{taskform.thursday}}
-        <br />
-        {{taskform.friday.label}}
-        {{taskform.friday}}
-        <br />
-        {{taskform.saturday.label}}
-        {{taskform.saturday}}
-        <br />
-        {{taskform.sunday.label}}
-        {{taskform.sunday}}
-        <br />
-        {{taskform.task.label}}
-        {{taskform.task}}
-        <br />
-        {{taskform.submit}}
-      </div>
-    {% endif %}
+    <hr />
   </form>
 </body>
 

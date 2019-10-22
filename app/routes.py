@@ -4,7 +4,6 @@ from app import db
 from app.forms import LoginForm
 from app.forms import RegistrationForm
 from app.forms import CreateRoutineForm
-from app.forms import CreateTaskForm
 from app.models import User
 from flask_login import current_user, login_user
 from flask_login import logout_user
@@ -74,13 +73,4 @@ def register():
 @app.route('/create', methods=['GET', 'POST'])
 def create():
     form = CreateRoutineForm()
-    taskform = CreateTaskForm()
-    showTaskForm = True
-    if form.validate_on_submit():
-        if(showTaskForm):
-            showTaskForm = False
-        else:
-            showTaskForm = True
-    if taskform.validate_on_submit():
-
-    return render_template('createroutine.html', title='Create', form=form, taskform=taskform, showTaskForm=showTaskForm)
+    return render_template('createroutine.html', title='Create', form=form)
