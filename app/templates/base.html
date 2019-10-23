@@ -1,0 +1,46 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Task Route</title>
+        {% else %}
+        <title>Task Route</title>
+        {% endif %}
+    </head>
+
+    <body>
+      <style>
+      a{
+          font-size: 200%;
+          font-family: monospace;
+          color:gray;
+      }
+      </style>
+      <a href="{{url_for('home') }}"><b>Home</b></a>
+      &nbsp;
+      <a href="{{url_for('createroutine')}}"><b>Create</b></a>
+      &nbsp;
+
+     <!-- <a href="{{ url_for('index') }}">Homeee</a> -->
+      {% if current_user.is_anonymous %}
+      <a href="{{ url_for('login') }}"><b>Login</b></a>
+      &nbsp;
+      {% else %}
+      <a href="{{ url_for('logout') }}"><b>Logout</b></a>
+      &nbsp;
+      {% endif %}
+      <!--<a href=" {{url_for('register') }}"><b>Create an Account!</b></a> -->
+
+      <hr>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul>
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </body>
+
+</html>
