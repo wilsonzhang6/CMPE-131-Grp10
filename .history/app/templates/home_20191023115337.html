@@ -18,7 +18,7 @@ h1 {
    /*current_user is a property of flask-login */
     <h1>Hi, {{ current_user.username }}!</h1>
     {% for post in posts %}
-    <div><p>{{ post.head }}</b></p></div>
+    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
     {% endfor %}
 </style>
 <h1>Welcome to Task Route! </h1>

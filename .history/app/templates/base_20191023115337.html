@@ -13,9 +13,8 @@
     <body>
       <a href="{{url_for('home') }}"><b class="btn btn-primary">Home</b></a>
       &nbsp;
-    <!--  <a href="{{url_for('create')}}"><b class="btn btn-primary">Create Routine</b></a>
+      <a href="{{url_for('create')}}"><b class="btn btn-primary">Create Routine</b></a>
       &nbsp;
-    -->
 
      <!-- <a href="{{ url_for('index') }}">Homeee</a> -->
       {% if current_user.is_anonymous %}
@@ -24,7 +23,6 @@
       {% else %}
       <a href="{{ url_for('logout') }}"><b class="btn btn-primary">Logout</b></a>
       &nbsp;
-      <a href="{{url_for('myAccount') }}"<b class="btn btn-primary">MyAccount</b></a>
       {% endif %}
       <!--<a href=" {{url_for('register') }}"><b>Create an Account!</b></a> -->
 
