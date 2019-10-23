@@ -3,7 +3,7 @@
 {% block content %}
 
 <body>
-  <form action="" method="post"  style = "font-family: monospace">
+  <form action="" method="post">
     {{form.hidden_tag()}}
     {{form.title.label}}
     {{form.title}}
@@ -36,7 +36,9 @@
     {{form.task.label}}
     {{form.task}}
     <br />
-    {{form.add}}
+    <div class="btn btn-primary">
+      {{form.add}}
+    </div>
     <hr />
   </form>
 </body>
