@@ -28,10 +28,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class CreateRoutineForm(FlaskForm):
-    title = StringField('Routine Title: ')
-    add = SubmitField('Add Task')
-
-class CreateTaskForm(FlaskForm):
+    title = StringField('Routine name: ', validators=[DataRequired()])
     monday = BooleanField('Monday')
     tuesday = BooleanField('Tuesday')
     wednesday = BooleanField('Wednesday')
@@ -40,4 +37,4 @@ class CreateTaskForm(FlaskForm):
     saturday = BooleanField('Saturday')
     sunday = BooleanField('Sunday')
     task = StringField('Task: ')
-    submit = SubmitField('Submit')
+    add = SubmitField('Add Task')

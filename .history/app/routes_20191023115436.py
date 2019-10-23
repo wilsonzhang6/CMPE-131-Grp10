@@ -17,14 +17,7 @@ def home():
 @app.route('/index')
 @login_required
 def index():
-    return render_template('index.html', title='Home')
-
-@app.route('/MyAccount', methods=['GET', 'POST'])
-@login_required
-def myAccount():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
-    return render_template('myAccount.html', title='My Account')
+    return render_template('index.html', title='Home', posts=posts)
 
 
 @app.route('/login', methods=['GET', 'POST'])
