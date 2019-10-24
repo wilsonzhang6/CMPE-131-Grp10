@@ -1,4 +1,5 @@
-body, html{
+body {
   font-style: 'Segoe UI', 'Open Sans', 'Helvetica';
-  margin-top: 10px;
+  margin: 20px;
+  background-color: black;
 }
