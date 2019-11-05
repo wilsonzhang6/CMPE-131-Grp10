@@ -7,7 +7,7 @@
 
 <style>
 h1 {
-    color:chocolate;
+    color:rgb(110, 77, 231);
     /*align-items:  center; */
     font-weight: bold;
     text-align: center;
@@ -15,23 +15,29 @@ h1 {
     font-family:'Courier New', Courier, monospace;
 }
 h2{
-    color: blueviolet;
+    color: rgb(110, 77, 231);
     text-align: center;
+    font-weight: bold;
     font-size:150%;
     font-family:'Courier New', Courier, monospace;
 
 }
 body{
-    background-image: url(https://www.123freevectors.com/wp-content/original/142192-blue-and-white-professional-background.jpg);
-    background-image: url(https://cdn4.iconfinder.com/data/icons/household-tasks-flat/272/household-chores-task-laundry-dry-clothes-hang-512.png);
-    background-position: right top;
-    background-repeat: no-repeat;
+    /* background-image: url(https://www.123freevectors.com/wp-content/original/113361-turquoise-blurred-background-vector.jpg);
+      background-image: url(https://www.123freevectors.com/wp-content/original/110373-beige-and-red-blurred-background-vector.jpg);
+      */
+        background-image: url(http://wallpaperping.com/wp-content/uploads/2018/10/download.png);
+        background-repeat: no-repeat;
+        background-size: 100em;
+    }
+#homepage{
+   
+    background-image:
+    url(https://cdn4.iconfinder.com/data/icons/household-tasks-flat/272/household-chores-task-laundry-dry-clothes-hang-512.png), 
+    url(https://timedotcom.files.wordpress.com/2015/02/runner-exercise.jpg); 
+    background-position: right, left; 
+    background-repeat: no-repeat,no-repeat;
     background-size: 10em;
-    background-image: url(https://timedotcom.files.wordpress.com/2015/02/runner-exercise.jpg);
-    background-position: left bottom;
-    background-repeat: no-repeat;
-    background-size: 10em;
-
 }
 <body>
    /*current_user is a property of flask-login */
@@ -40,7 +46,9 @@ body{
     <div><p>{{ post.head }}</b></p></div>
     {% endfor %}
 </style>
+<div id="homepage">
 <h1>Welcome to Task Route! </h1>
 <h2>All Tasks in One Place</h2>
+</div>
 </body>
 {% endblock %}
