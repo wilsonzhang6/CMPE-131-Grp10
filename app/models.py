@@ -9,7 +9,8 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    posts = db.relationship('Post', backref='author', lazy='dynamic')
+    #posts = db.relationship('Post', backref='author', lazy='dynamic')
+    tasks=db.relationship('Task', backref='author', lazy='dynamic')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -31,17 +32,21 @@ class Post(db.Model):
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    taskname = db.Column(db.String())
-    monday = db.Column(db.Boolean())
-    tuesday = db.Column(db.Boolean())
-    wednesday = db.Column(db.Boolean())
-    thursday = db.Column(db.Boolean())
-    friday = db.Column(db.Boolean())
-    saturday = db.Column(db.Boolean())
-    sunday = db.Column(db.Boolean())
+    taskname = db.Column(db.String(128), index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    mon = db.Column(db.Boolean, unique=False, default=True)
+    tue = db.Column(db.Boolean, unique=False, default=True)
+    wed = db.Column(db.Boolean, unique=False, default=True)
+    thu = db.Column(db.Boolean, unique=False, default=True)
+    fri = db.Column(db.Boolean, unique=False, default=True)
+    sat = db.Column(db.Boolean, unique=False, default=True)
+    sun = db.Column(db.Boolean, unique=False, default=True)
 
-class Routine(db.Model):    #made up of Task classes
-    routinetitle = db.Column(db.String())
+    def __repr__(self):
+        return '<Tasks {}>'.format(self.taskname)
+
+# class Routine(db.Model):    #made up of Task classes
+ #   routinetitle = db.Column(db.String())
 
 @login.user_loader
 def load_user(id):
