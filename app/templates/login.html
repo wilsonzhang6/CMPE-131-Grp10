@@ -3,8 +3,38 @@
 {% block content %}
 
 
-    <body>
-    <p>New User? <a href="{{ url_for('register') }}"><button class="btn btn-primary">Create an Account</button></a></p>
+    <body class= "login-page">
+    
+        <!--style>
+            body{
+                position: relative; 
+                width: 1440px;
+                height: 1024px; 
+
+                background-color: #535353;
+                box-shadow: 0px 4px 4px rgba(0,0, 0, 0.25);
+            }    
+            /*
+            #signup{
+                position: absolute;
+                width: 183px; 
+                height: 21px; 
+                left: 628px; 
+                top: 486px; 
+
+                font-family: Oxygen; 
+                font-style: normal;
+                font-weight: bold;
+                font-size: 14px; 
+                line-height: 18px;
+                display: flex;
+                align-items: center;
+                text-decoration-line: underline;
+                text-transform: uppercase;
+
+                color: #E0E0E0;
+            }*/
+        </style-->
         <h1>Sign In</h1>
         <form action="" method="post" novalidate>
             {{ form.hidden_tag() }}
@@ -18,7 +48,7 @@
             </p>
             <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
             <p> {{ form.submit() }}</p>
-
+    <p id="signup"><a href="{{ url_for('register') }}">Don't have an account? </a></p>
     </body>
         </form>
     {% endblock %}
