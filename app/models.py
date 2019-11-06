@@ -9,8 +9,8 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    #posts = db.relationship('Post', backref='author', lazy='dynamic')
-    tasks=db.relationship('Task', backref='author', lazy='dynamic')
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
+    #tasks=db.relationship('Task', backref='author', lazy='dynamic')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -30,20 +30,20 @@ class Post(db.Model):
     def __repr__(self):
         return '<Posts {}>'.format(self.body)
 
-class Task(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    taskname = db.Column(db.String(128), index=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    mon = db.Column(db.Boolean, unique=False, default=True)
-    tue = db.Column(db.Boolean, unique=False, default=True)
-    wed = db.Column(db.Boolean, unique=False, default=True)
-    thu = db.Column(db.Boolean, unique=False, default=True)
-    fri = db.Column(db.Boolean, unique=False, default=True)
-    sat = db.Column(db.Boolean, unique=False, default=True)
-    sun = db.Column(db.Boolean, unique=False, default=True)
+#class Task(db.Model):
+ #   id = db.Column(db.Integer, primary_key=True)
+  #  taskname = db.Column(db.String(128), index=True)
+   # user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+   # mon = db.Column(db.Boolean, unique=False, default=True)
+   # tue = db.Column(db.Boolean, unique=False, default=True)
+   # wed = db.Column(db.Boolean, unique=False, default=True)
+   # thu = db.Column(db.Boolean, unique=False, default=True)
+   # fri = db.Column(db.Boolean, unique=False, default=True)
+   # sat = db.Column(db.Boolean, unique=False, default=True)
+   # sun = db.Column(db.Boolean, unique=False, default=True)
 
-    def __repr__(self):
-        return '<Tasks {}>'.format(self.taskname)
+    #def __repr__(self):
+    #    return '<Tasks {}>'.format(self.taskname)
 
 # class Routine(db.Model):    #made up of Task classes
  #   routinetitle = db.Column(db.String())
