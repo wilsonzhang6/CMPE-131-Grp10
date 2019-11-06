@@ -27,8 +27,7 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different email address.')
 
-class CreateRoutineForm(FlaskForm):
-    title = StringField('Routine name: ', validators=[DataRequired()])
+class CreateTaskForm(FlaskForm):
     monday = BooleanField('Monday')
     tuesday = BooleanField('Tuesday')
     wednesday = BooleanField('Wednesday')
@@ -38,3 +37,7 @@ class CreateRoutineForm(FlaskForm):
     sunday = BooleanField('Sunday')
     task = StringField('Task: ')
     add = SubmitField('Add Task')
+
+class CreateRoutineForm(FlaskForm):
+    title = StringField('Routine name: ', validators=[DataRequired()])
+    submit = SubmitField('Create Routine')

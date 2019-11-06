@@ -31,15 +31,17 @@ class Post(db.Model):
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    task = db.Column(db.String())
-    # monday,tuesday,wednesday,thursday,friday,saturday,sunday = db.Column(db.Boolean())
+    taskname = db.Column(db.String())
+    monday = db.Column(db.Boolean())
+    tuesday = db.Column(db.Boolean())
+    wednesday = db.Column(db.Boolean())
+    thursday = db.Column(db.Boolean())
+    friday = db.Column(db.Boolean())
+    saturday = db.Column(db.Boolean())
+    sunday = db.Column(db.Boolean())
 
-    def __repr__(self):
-        return '<Tasks {}>'.format(self.body)
-
-# class Routine(db.Model):    #made up of Task classes
-#     title = db.Column(db.String())
-#     tasks = db.Column()
+class Routine(db.Model):    #made up of Task classes
+    routinetitle = db.Column(db.String())
 
 @login.user_loader
 def load_user(id):
