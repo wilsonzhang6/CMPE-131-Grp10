@@ -1,0 +1,3 @@
+Currently functions with template:
+- database does not work
+- loading it does work
