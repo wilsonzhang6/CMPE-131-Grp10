@@ -1,13 +1,8 @@
+<!--base html file, elements here will be shared across all pages on the website-->
 <html>
-    <head>
-        {% if title %}
-        <title>{{ title }} - microblog</title>
-        {% else %}
-        <title>microblog</title>
-        {% endif %}
-    </head>
     <body>
-        <div>
+        <div> <!--this is the top banner-->
+        
         my blog:
             <a href="{{ url_for('index') }}">Home</a>
             {% if current_user.is_anonymous %}
@@ -16,7 +11,8 @@
             <a href="{{ url_for('logout') }}">Logout</a>
             {% endif %}
         </div>
-        <hr>
+
+        <!--renders flash messages, do not touch-->
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>

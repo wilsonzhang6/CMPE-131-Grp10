@@ -1,0 +1,6 @@
+>>> from app import db
+>>> from app.models import User, Post
+>>> db.create_all()
+>>> u = User(username='Test', email='test@example.com')
+>>> db.session.add(u)
+>>> db.session.commit()

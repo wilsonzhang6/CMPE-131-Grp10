@@ -1,12 +1,14 @@
 #provided by teach
+#this is the database and database function (posts)
 from datetime import datetime
-from app import db
-from app import login
+from app import db #import from upper directory level
+from app import login #import from upper directory level
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 class User(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True) #integer that is incremented when a new addition is added
+
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True, unique=True)
     password_hash = db.Column(db.String(128))
