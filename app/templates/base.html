@@ -24,10 +24,16 @@
       {% if current_user.is_anonymous %}
       <a href="{{ url_for('login') }}"><b class="btn btn-primary">Login</b></a>
       &nbsp;
+      <input type="text" class="form-comtrol" placeholder="Search">
+      <b class="btn btn-info">Search</b>
+      &nbsp;
       {% else %}
       <a href="{{ url_for('logout') }}"><b class="btn btn-primary">Logout</b></a>
       &nbsp;
       <a href="{{url_for('myAccount') }}"<b class="btn btn-primary">MyAccount</b></a>
+      <input type="text" class="form-comtrol" placeholder="Search">
+      <b class="btn btn-info">Search</b>
+      &nbsp;
       {% endif %}
       <!--<a href=" {{url_for('register') }}"><b>Create an Account!</b></a> -->
 
