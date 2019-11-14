@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <body>
+    <!--  
+    <p>Your Routines <a href="{{ url_for('createRoutine') }}"><button class="btn btn-primary">Routine</button></a></p>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+        -->
+    <p>Account Information</p>
+    <p>{{ current_user.username }} Welcome to Task Route</p>
+    </body>
+       <!-- </form> -->
+    {% endblock %}

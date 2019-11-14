@@ -1,9 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
+<a href="{{url_for('create')}}"><b class="btn btn-primary">Create Routine</b></a>
+      &nbsp;
+  <!--    <a href="{{url_for('myAccount') }}"<b class="btn btn-primary">MyAccount</b></a>
+-->
+<a href="{{url_for('view')}}"><b class="btn btn-info">View Routine</b></a>
+      &nbsp;
     <!-- current_user is a property of flask-login -->
-    <h1>Hi, {{ current_user.username }}!</h1>
+<div><h1>Hi, {{ current_user.username }}! Welcome to Task Route</h1>
     {% for post in posts %}
-    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+    <h2>{{post.head}}</h2>
     {% endfor %}
+</div>
 {% endblock %}:w
