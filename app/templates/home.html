@@ -1,0 +1,27 @@
+{% extends "base.html" %} <!--problem-->
+
+{% block content %}
+
+<style>
+    /* This was the default banner, also moving all page's content down 
+    a little bit for testing - to be removed later*/
+    .default{
+        font-family: "Oxegyn", sans-serif;
+        font-style: normal;
+        position: fixed;
+        top: 11%; 
+    }
+</style>
+
+<body>
+   <!--this is the top banner provided by teach-->
+   <div class="default"> 
+            
+        {% if current_user.is_anonymous %}
+        <a href="{{ url_for('login') }}">Login</a>
+        {% else %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
+    </div>
+</body>
+{% endblock %}

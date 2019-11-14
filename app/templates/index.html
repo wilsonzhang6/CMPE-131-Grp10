@@ -2,9 +2,22 @@
 {% extends "base.html" %}
 
 {% block content %}
+<style>
+    .default{
+        font-family: "Oxegyn", sans-serif;
+        font-style: normal;
+        position: fixed;
+        top: 11%; 
+    }
+</style>
+
+<div class="default">
+    <a href="{{ url_for('logout') }}">Logout</a>
+
     <!-- current_user is a property of flask-login -->
     <h1>Hi, {{ current_user.username }}!</h1>
     {% for post in posts %}
     <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
     {% endfor %}
-{% endblock %}:w
+    {% endblock %}:w
+</div>

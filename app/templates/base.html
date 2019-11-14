@@ -1,6 +1,12 @@
 <!--base html file, elements here will be shared across all pages on the website-->
 <html>
     <head>
+
+        <!--Browser Tab word title-->
+        <title>
+            T A S K R O U T E
+        </title>
+
         <!--Google API's for Fonts and Material Icons-->
         <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Font+Name">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -15,10 +21,10 @@
             background-color: #535353; 
         }
 
-        /* This is the logo itself*/
+        /* This is the logo text itself*/
         #App-Logo{
             position: absolute;
-            top: 5px;
+            top: 15px;
             z-index: 9999;
             font-family: "Oxegyn", sans-serif;
             font-style: normal;
@@ -47,11 +53,20 @@
             box-shadow: 0px 4px 4px rgba(0,0, 0, 0.25);
         }
 
+        /* This was the default banner, also moving all page's content down 
+        a little bit for testing - to be removed later*/
         .default{
             font-family: "Oxegyn", sans-serif;
             font-style: normal;
             position: fixed;
-            top: 20%; 
+            top: 11%; 
+        }
+
+        /*this is shown when there are messages (when the user logouts as an example)*/
+        ul{
+            font-family: "Oxegyn", sans-serif;
+            font-style: normal;
+            list-style-type: none;
         }
     
     </style>
@@ -60,7 +75,8 @@
         <!--This is the Banner-->
         <area shape="rect", class="banner">
             <p>
-                <a id="App-Logo">
+                <!--App logo - it needs an href linked to the home page once created-->
+                <a id="App-Logo" href="{{ url_for('home') }}">
                     T A S K R O U T E 
                 </a>
             </p>
@@ -69,16 +85,14 @@
         <!--Default code provided by teach's template, to be removed later-->
         <div class=default>
             <!--this is the top banner provided by teach-->
-            <div class="defaultbanner"> 
+            <!--div> 
             
-            T A S K R O U T E:
-                <a href="{{ url_for('index') }}">Home</a>
                 {% if current_user.is_anonymous %}
                 <a href="{{ url_for('login') }}">Login</a>
                 {% else %}
                 <a href="{{ url_for('logout') }}">Logout</a>
                 {% endif %}
-            </div>
+            </div-->
 
             <!--renders flash messages, do not touch-->
             {% with messages = get_flashed_messages() %}
@@ -90,6 +104,7 @@
             </ul>
             {% endif %}
             {% endwith %}
+            <!--block content start-->
             {% block content %}
             {% endblock %}
         </div>

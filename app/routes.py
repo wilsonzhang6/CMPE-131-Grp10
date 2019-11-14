@@ -5,6 +5,7 @@ from app import app
 from app import db
 from app.forms import LoginForm
 from app.forms import RegistrationForm
+from app.forms import CreateRoutineForm
 from app.models import User
 from flask_login import current_user, login_user
 from flask_login import logout_user
@@ -13,6 +14,13 @@ from flask import request
 from werkzeug.urls import url_parse
 
 @app.route('/')
+
+#Home page
+@app.route('/home') 
+def home():
+     return render_template('home.html', title='Home') #problem
+
+#User's home page
 @app.route('/index')
 @login_required
 def index():
@@ -26,8 +34,9 @@ def index():
             'body': 'The Avengers movie was so cool!'
         }
     ]
-    return render_template('index.html', title='Home', posts=posts)
+    return render_template('index.html', title='User Home', posts=posts)
 
+#Login page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -49,11 +58,13 @@ def login():
         return redirect(next_page)
     return render_template('login.html', title='Sign in', form=form)
 
+#Logout function
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
 
+#Register page
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -67,3 +78,10 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+#Routine creation
+@app.route('/createroutine', methods=['GET', 'POST'])
+@login_required
+def createRoutine():
+    form = CreateRoutineForm()
+    return render_template('createroutine.html', title='Create Routine', form = form)

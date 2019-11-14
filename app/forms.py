@@ -1,16 +1,19 @@
 #provided by teach
 #different forms
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import User
+import calendar
 
+#Form for logging into system
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
+#Form for new account registration
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
@@ -28,3 +31,17 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
+
+#Form for creating Routine
+class CreateRoutineForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()])
+    description = StringField('Description', validators=[DataRequired()])
+
+    def validate_maxtitle(self, title):
+        if len(title) > 100:
+            raise ValidationError('You have ', len(title), ' characters, the maximum is 100 characters')
+    def validate_maxdesc(self, description):
+        if len(description) > 2000:
+            raise ValidationError('You have ', len(description), ' characters, the maximum is 2000 characters')
+
+
