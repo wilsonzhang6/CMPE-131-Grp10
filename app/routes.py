@@ -67,18 +67,8 @@ def register():
 @app.route('/index')
 @login_required
 def index():
-    """
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]"""
-    return render_template('index.html', title='User Home')#, posts=posts)
+    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+    return render_template('index.html', title='User Home', image_file=image_file)#, posts=posts)
 
 #page to upload a profile picture (another feature)
 @app.route('/index/profilepic')
