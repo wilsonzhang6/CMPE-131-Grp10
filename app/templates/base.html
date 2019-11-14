@@ -80,11 +80,15 @@
             font-style: normal;
             list-style-type: none;
         }
+
+
+        /*all below is for side navigation bar*/
     
     </style>
     <body>
 
-        <i class="material-icons hamburger-menu">menu</i>
+        <!--this is the hamburger menu icon-->
+        <i class="material-icons hamburger-menu" onclick="openNav()">menu</i>
         
         <!--This is the Banner-->
         <area shape="rect", class="banner">
@@ -96,17 +100,10 @@
             </p>
         </area>
 
+        <!--sidebar navigation from hamburger menu-->
+
         <!--Default code provided by teach's template, to be removed later-->
         <div class=default>
-            <!--this is the top banner provided by teach-->
-            <!--div> 
-            
-                {% if current_user.is_anonymous %}
-                <a href="{{ url_for('login') }}">Login</a>
-                {% else %}
-                <a href="{{ url_for('logout') }}">Logout</a>
-                {% endif %}
-            </div-->
 
             <!--renders flash messages, do not touch-->
             {% with messages = get_flashed_messages() %}
