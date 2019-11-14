@@ -1,4 +1,3 @@
-stuff here blah blah
 Your project should have a README.md file with
 
 a.     Instructions on how to run your app.
