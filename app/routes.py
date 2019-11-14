@@ -5,7 +5,7 @@ from app.forms import LoginForm
 from app.forms import RegistrationForm
 from app.forms import CreateRoutineForm
 from app.forms import CreateTaskForm
-from app.models import User, Routine
+from app.models import User
 from flask_login import current_user, login_user
 from flask_login import logout_user
 from flask_login import login_required
