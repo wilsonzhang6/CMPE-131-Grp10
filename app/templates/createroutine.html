@@ -1,14 +1,88 @@
 {% extends "base.html" %}
 
 {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+</head>
+<body>
+    <form action="{{url_for(create)}}" method="POST">
+    <h1>Todo List</h1>
+    <div>Add a new todo item: 
+        <form action="{{ url_for('add') }}" method="POST">
+            <input type="text" name="todoitem">
+            <input type="submit" value="Add Item">
+        </form>
+    </div>
+    <div>
+        <h2>Incomplete Items</h2>
+        <ul>
+            {% for todo in incomplete %}
+            <li style="font-size: 30pt">{{ todo.text }} <a href="{{ url_for('complete', id=todo.id) }}">Mark As Complete</a></li>
+            {% endfor %}    
+        </ul>
+        <h2>Completed Items</h2>
+        <ul>
+            {% for todo in complete %}
+            <li style="font-size: 30pt">{{ todo.text }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    </form>
+</body>
+</html>
+
+{% endblock %}
+
+<!--
+{% extends "base.html" %}
+
+{% block content %}
 
 <body>
-  <form action = "" method = "post" novalidate style = "font-family: monospace">
+  <form action="" method="post">
+    {{form.hidden_tag()}}
     {{form.title.label}}
-    {{form.title}}<br />
-    {{form.day.label}}
-    {{form.day}}
+    {{form.title}}
+    <hr />
+    Add a task here!
+    <br />
+    <input type="task" name="task-name">
+    <br/>
+    Please choose which day you would like to do this task:
+    <br />
+    {{form.monday.label}}
+    {{form.monday}}
+    <br />
+    {{form.tuesday.label}}
+    {{form.tuesday}}
+    <br />
+    {{form.wednesday.label}}
+    {{form.wednesday}}
+    <br />
+    {{form.thursday.label}}
+    {{form.thursday}}
+    <br />
+    {{form.friday.label}}
+    {{form.friday}}
+    <br />
+    {{form.saturday.label}}
+    {{form.saturday}}
+    <br />
+    {{form.sunday.label}}
+    {{form.sunday}}
+    <br />
+    {{form.task.label}}
+    {{form.task}}
+    <br />
+    <input type="submit" value="add item" class="btn btn-primary">
+    <!--{{form.add(class_='btn btn-primary')}}-->
+    <!--
+    <hr />
   </form>
 </body>
 
 {% endblock %}
+-->
