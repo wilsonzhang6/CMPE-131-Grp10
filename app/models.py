@@ -27,10 +27,12 @@ class User(UserMixin, db.Model):
 #This is modified to be a routine/post
 class Routine(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) #this is the author of the routine
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text(2000), nullable=False)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+     #this is the author of the routine
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
 
     def __repr__(self):
         return '<Routine: {} {}>'.format(self.title, self.description)

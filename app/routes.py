@@ -20,23 +20,6 @@ from werkzeug.urls import url_parse
 def home():
      return render_template('home.html', title='Home') #problem
 
-#User's home page
-@app.route('/index')
-@login_required
-def index():
-    """
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]"""
-    return render_template('index.html', title='User Home')#, posts=posts)
-
 #Login page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -80,7 +63,32 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
+#User's home page
+@app.route('/index')
+@login_required
+def index():
+    """
+    posts = [
+        {
+            'author': {'username': 'John'},
+            'body': 'Beautiful day in Portland!'
+        },
+        {
+            'author': {'username': 'Susan'},
+            'body': 'The Avengers movie was so cool!'
+        }
+    ]"""
+    return render_template('index.html', title='User Home')#, posts=posts)
+
+#page to upload a profile picture (another feature)
+@app.route('/index/profilepic')
+@login_required
+def profilepic():
+    #add functionality here
+    return render_template('profilepic.html', title='Upload Profile Picture')
+
 #Routine creation
+#This is entirely UNTESTED
 @app.route('/createroutine', methods=['GET', 'POST'])
 @login_required
 def createRoutine():
