@@ -24,6 +24,7 @@ def home():
 @app.route('/index')
 @login_required
 def index():
+    """
     posts = [
         {
             'author': {'username': 'John'},
@@ -33,8 +34,8 @@ def index():
             'author': {'username': 'Susan'},
             'body': 'The Avengers movie was so cool!'
         }
-    ]
-    return render_template('index.html', title='User Home', posts=posts)
+    ]"""
+    return render_template('index.html', title='User Home')#, posts=posts)
 
 #Login page
 @app.route('/login', methods=['GET', 'POST'])
@@ -84,4 +85,6 @@ def register():
 @login_required
 def createRoutine():
     form = CreateRoutineForm()
+    title = Title(title=form.title.data)
+    desc = Desc(description=form.description.data)
     return render_template('createroutine.html', title='Create Routine', form = form)
