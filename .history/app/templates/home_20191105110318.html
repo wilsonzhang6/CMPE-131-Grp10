@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{%block content %}
+<title>
+    Task Route
+</title>
+
+<style>
+h1 {
+    color:cadetblue;
+    /*align-items:  center; */
+    text-align: center;
+    font-size: 300%;
+
+}
+body{
+    background-image: url(https://unsplash.com/backgrounds/events/party);
+}
+<body>
+   /*current_user is a property of flask-login */
+     <h1>Hi, {{ current_user.username }}!</h1>
+    {% for post in posts %}
+    <div><p>{{ post.head }}</b></p></div>
+    {% endfor %}
+</style>
+<h1>Welcome to Task Route! </h1>
+</body>
+{% endblock %}

@@ -1,0 +1,42 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="styles.css" />
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        {% if title %}
+        <title>{{ title }} - Task Route</title>
+        {% else %}
+        <title>Task Route</title>
+        {% endif %}
+    </head>
+
+    <body>
+      <a href="{{url_for('home') }}"><b class="btn btn-primary">Home</b></a>
+      &nbsp;
+      <a href="{{url_for('create')}}"><b class="btn btn-primary">Create Routine</b></a>
+      &nbsp;
+
+     <!-- <a href="{{ url_for('index') }}">Homeee</a> -->
+      {% if current_user.is_anonymous %}
+      <a href="{{ url_for('login') }}"><b class="btn btn-primary">Login</b></a>
+      &nbsp;
+      {% else %}
+      <a href="{{ url_for('logout') }}"><b class="btn btn-primary">Logout</b></a>
+      &nbsp;
+      {% endif %}
+      <!--<a href=" {{url_for('register') }}"><b>Create an Account!</b></a> -->
+
+      <hr>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul>
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </body>
+
+</html>
