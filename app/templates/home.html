@@ -1,56 +1,21 @@
-{% extends "base.html" %}
+{% extends "base.html" %} <!--problem-->
 
-{%block content %}
-<title>
-    Task Route
-</title>
+{% block content %}
 
 <style>
-h1 {
-    color:rgb(110, 77, 231);
-    /*align-items:  center; */
-    font-weight: bold;
-    text-align: center;
-    font-size: 300%;
-    font-family:'Courier New', Courier, monospace;
-}
-h2{
-    color: rgb(110, 77, 231);
-    text-align: center;
-    font-weight: bold;
-    font-size:150%;
-    font-family:'Courier New', Courier, monospace;
-
-}
-body{
-    /* background-image: url(https://www.123freevectors.com/wp-content/original/113361-turquoise-blurred-background-vector.jpg);
-      background-image: url(https://www.123freevectors.com/wp-content/original/110373-beige-and-red-blurred-background-vector.jpg);
-      */
-        background-image: url(http://wallpaperping.com/wp-content/uploads/2018/10/download.png);
-        background-repeat: no-repeat;
-        background-size: 100em;
+    /* This was the default banner, also moving all page's content down 
+    a little bit for testing - to be removed later*/
+    .default{
+        font-family: "Oxegyn", sans-serif;
+        font-style: normal;
+        position: fixed;
+        top: 11%; 
     }
-#homepage{
-   
-    background-image:
-    url(https://cdn4.iconfinder.com/data/icons/household-tasks-flat/272/household-chores-task-laundry-dry-clothes-hang-512.png), 
-    url(https://timedotcom.files.wordpress.com/2015/02/runner-exercise.jpg);
-    background-position: right, left; 
-    background-repeat: no-repeat,no-repeat, no-repeat;
-    background-size: contain;
-}
-/*    background-image: url(https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAFAjK9.img?h=630&w=1200&m=6&q=60&o=t&l=f&f=jpg&x=1060&y=1065); 
-*/
-<body>
-   /*current_user is a property of flask-login */
-     <h1>Hi, {{ current_user.username }}!</h1>
-    {% for post in posts %}
-    <div><p>{{ post.head }}</b></p></div>
-    {% endfor %}
 </style>
-<div id="homepage">
-<h1>Welcome to Task Route! </h1>
-<h2>All Tasks in One Place</h2>
-</div>
+
+<body>
+   <!--this is the top banner provided by teach-->
+   <div class="default"> 
+    </div>
 </body>
 {% endblock %}

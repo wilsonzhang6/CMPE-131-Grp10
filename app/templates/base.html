@@ -1,53 +1,207 @@
-<!DOCTYPE html>
+<!--base html file, elements here will be shared across all pages on the website-->
 <html>
     <head>
-      <link rel="stylesheet" href="/static/css/styles.css">
-      <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Font+Name">
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-      {% if title %}
-      <title>{{ title }} - Task Route</title>
-      {% else %}
-      <title>Task Route</title>
-      {% endif %}
+
+        <!--Browser Tab word title-->
+        <title>
+            T A S K R O U T E
+        </title>
+
+        <!--Google API's for Fonts and Material Icons-->
+        <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Font+Name">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!--Bootstrap-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
     </head>
+    <style>
+        
+        /*css properties for all pages*/
+        body{
+            font-style: 'Oxygen', sans-serif;
+            margin: 20-px;
+            background-color: #535353; 
+        }
 
+        /* This is the logo text itself*/
+        #App-Logo{
+            position: absolute;
+            top: 10px;
+            z-index: 3;
+            font-family: "Oxegyn", sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 50px;
+            left: 90px; 
+            text-transform: uppercase;
+            font-feature-settings: 'cpsp' on;
+            color: #0F0F0F;
+            text-decoration: none;
+            mix-blend-mode: darken;
+        }
+
+        /* This is the green rectangle for the banner */
+        .banner{
+            position: absolute;
+            width: 100%; 
+            height: 96px;
+            left: 0px;
+            top: 0px;
+            z-index: 2;
+            overflow: hidden;
+            background: rgba(108, 164, 107, 0.69);
+            backdrop-filter: blur(4px);
+            background-size: cover;
+            box-shadow: 0px 4px 4px rgba(0,0, 0, 0.25);
+        }
+
+        /* This was the default banner, also moving all page's content down 
+        a little bit for testing - to be removed later*/
+        .default{
+            font-family: "Oxegyn", sans-serif;
+            font-style: normal;
+            position: fixed;
+            top: 11%; 
+        }
+
+        /*this is shown when there are messages (when the user logouts as an example)*/
+        ul{
+            font-family: "Oxegyn", sans-serif;
+            font-style: normal;
+            list-style-type: none;
+        }
+
+        /*This is the hamburger menu icon*/
+        .hamburger-menu{
+            font-size: 45px;
+            text-align: center;
+            position: absolute;
+            text-decoration: none;
+            color: #0F0F0F;
+            width: 55px;
+            height: 53px;
+            left: 20px;
+            top: 12px;
+            z-index: 3;
+            transition: 0.3s;
+        }
+
+        .hamburger-menu:hover{
+            color: #f1f1f1;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        /*all below is for side navigation bar*/
+        .sideNavBarPanelC {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 4;
+            top: 0;
+            left: 0;
+            background-color: #272626;
+            box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        #sideNavLinks a {
+            font-family: 'Oxygen', sans-serif;
+            /*padding: 8px 8px 8px 32px;*/
+            padding-left: 20px;
+            top: 50px;
+            font-size: 25px;
+            color: #818181;
+            transition: 0.3s;
+            text-decoration: none;
+            z-index: 4;
+        }
+
+        .closebtn {
+            text-decoration: none;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+            z-index: 4;
+
+            font-size: 45px;
+            text-align: center;
+            position: absolute;
+            width: 55px;
+            height: 53px;
+            left: 20px;
+            top: 12px;
+            transition: 0.3s;
+        }
+
+        .closebtn:hover{
+            color:white;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+    </style>
     <body>
-      <a href="{{url_for('home') }}"><b class="btn btn-primary">Home</b></a>
-      &nbsp;
-    <!--  <a href="{{url_for('create')}}"><b class="btn btn-primary">Create Routine</b></a>
-      &nbsp;
-    -->
 
-     <!-- <a href="{{ url_for('index') }}">Homeee</a> -->
-      {% if current_user.is_anonymous %}
-      <a href="{{ url_for('login') }}"><b class="btn btn-primary">Login</b></a>
-      &nbsp;
-      <input type="text" class="form-comtrol" placeholder="Search">
-      <b class="btn btn-info">Search</b>
-      &nbsp;
-      {% else %}
-      <a href="{{ url_for('logout') }}"><b class="btn btn-primary">Logout</b></a>
-      &nbsp;
-      <a href="{{url_for('myAccount') }}"<b class="btn btn-primary">MyAccount</b></a>
-      <input type="text" class="form-comtrol" placeholder="Search">
-      <b class="btn btn-info">Search</b>
-      &nbsp;
-      {% endif %}
-      <!--<a href=" {{url_for('register') }}"><b>Create an Account!</b></a> -->
+        <!--this is the hamburger menu icon-->
+        <a class="hamburger-menu" href="#" onclick="openSideNavBar()">&#9776;</a>
+        <div id="sideNavBarPanel" class="sideNavBarPanelC">
+            <a class="closebtn" href="javascript:void(0)" onclick="closeSideNavBar()">&#9776;</a>
+            <br>
+            <br>
+            <div id="sideNavLinks">
+                {% if current_user.is_anonymous %}
+                <a href="{{ url_for('login') }}">Login</a>
+                {% else %}
+                <a href="">Your Feed</a><br>
+                <a href="">New Routine</a><br>
+                <a href="{{ url_for('index') }}">Your Account</a><br>
+                <a href="{{ url_for('logout') }}">Logout</a>
+                {% endif %}
+            </div>
+        </div>
 
-      <hr>
-      {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      <ul>
-          {% for message in messages %}
-          <li>{{ message }}</li>
-          {% endfor %}
-      </ul>
-      {% endif %}
-      {% endwith %}
-      {% block content %}{% endblock %}
+        <!--java script for side nav bar-->
+        <script>
+            function openSideNavBar() {
+              document.getElementById("sideNavBarPanel").style.width = "240px";
+            }
+            
+            function closeSideNavBar() {
+              document.getElementById("sideNavBarPanel").style.width = "0";
+            }
+        </script>
+        
+        <!--This is the Banner-->
+        <area shape="rect", class="banner">
+            <p>
+                <!--App logo - it needs an href linked to the home page once created-->
+                <a id="App-Logo" href="{{ url_for('home') }}">
+                    T A S K R O U T E 
+                </a>
+            </p>
+        </area>
+
+
+        <!--Default code provided by teach's template, to be removed later-->
+        <div class=default>
+
+            <!--renders flash messages, do not touch-->
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            <!--block content start-->
+            {% block content %}
+            {% endblock %}
+        </div>
     </body>
-
 </html>

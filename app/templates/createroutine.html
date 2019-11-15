@@ -2,44 +2,12 @@
 
 {% block content %}
 
-<body>
-  <form action="" method="post">
-    {{form.hidden_tag()}}
-    {{form.title.label}}
-    {{form.title}}
-    <hr />
-    Add a task here!
-    <br />
-    Please choose which day you would like to do this task:
-    <br />
-    {{taskform.monday.label}}
-    {{taskform.monday}}
-    <br />
-    {{taskform.tuesday.label}}
-    {{taskform.tuesday}}
-    <br />
-    {{taskform.wednesday.label}}
-    {{taskform.wednesday}}
-    <br />
-    {{taskform.thursday.label}}
-    {{taskform.thursday}}
-    <br />
-    {{taskform.friday.label}}
-    {{taskform.friday}}
-    <br />
-    {{taskform.saturday.label}}
-    {{taskform.saturday}}
-    <br />
-    {{taskform.sunday.label}}
-    {{taskform.sunday}}
-    <br />
-    {{taskform.task.label}}
-    {{taskform.task}}
-    <br />
-    {{taskform.add(class_='btn btn-secondary')}}
-    <hr />
-    {{form.submit(class_='btn btn-primary')}}
+  <form action = "" method = "post">
+    
+    {{form.title(placeholder=" TITLE")}}
+    <br>
+    {{form.description(placeholder=" DESCRIPTION")}}
   </form>
-</body>
+
 
 {% endblock %}

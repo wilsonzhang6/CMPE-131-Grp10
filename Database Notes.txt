@@ -1,0 +1,13 @@
+>>> from app import db
+>>> from app.models import User, Routine
+>>> db.create_all() #creating the database
+>>> user_1 = User(username='test', email='test@demo.com') #a user into the database
+>>> db.session.add(user_1) #a change to the database
+>>> db.session.commit()
+
+user = User.query.filter_by(username='test').first()
+user.routines.all() #calls all routines (posts) made by the user
+routine_1 = Routine(title='test title', description='test description & content', user_id=user.id)
+db.session.add(routine_1) #add the routine_1
+db.session.commit() #commit changes again
+user.routines.all()

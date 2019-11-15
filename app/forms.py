@@ -1,14 +1,21 @@
+#provided by teach
+#different forms
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectMultipleField, RadioField
+from flask_wtf.file import FileField, FileAllowed
+from flask_login import current_user
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import User
+import calendar
 
+#Form for logging into system
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Sign In')
+    submit = SubmitField('Login')
 
+#Form for new account registration
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
@@ -27,17 +34,33 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different email address.')
 
-class CreateTaskForm(FlaskForm):
-    monday = BooleanField('Monday')
-    tuesday = BooleanField('Tuesday')
-    wednesday = BooleanField('Wednesday')
-    thursday = BooleanField('Thursday')
-    friday = BooleanField('Friday')
-    saturday = BooleanField('Saturday')
-    sunday = BooleanField('Sunday')
-    task = StringField('Task: ')
-    add = SubmitField('Add Task')
-
+#Form for creating Routine
 class CreateRoutineForm(FlaskForm):
-    title = StringField('Routine name: ', validators=[DataRequired()])
-    submit = SubmitField('Create Routine')
+    title = StringField('Title', validators=[DataRequired()])
+    description = StringField('Description', validators=[DataRequired()])
+
+    def validate_maxtitle(self, title):
+        if len(title) > 100:
+            raise ValidationError('You have ', len(title), ' characters, the maximum is 100 characters')
+    def validate_maxdesc(self, description):
+        if len(description) > 2000:
+            raise ValidationError('You have ', len(description), ' characters, the maximum is 2000 characters')
+
+#Form for new account registration
+class UpdateAccountForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    picture = FileField('Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Update')
+
+    def validate_username(self, username):
+        if username.data != current_user.username:
+            user = User.query.filter_by(username=username.data).first()
+            if user is not None:
+                raise ValidationError('Please use a different username.')
+
+    def validate_email(self, email):
+        if email.data != current_user.email:
+            user = User.query.filter_by(email=email.data).first()
+            if user is not None:
+                raise ValidationError('Please use a different email address.')
