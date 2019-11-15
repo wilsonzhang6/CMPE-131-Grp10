@@ -25,13 +25,11 @@ They can add routines
 Feature5: View Routine
 This feature is only available to existing user and they can view their routines
 
-Feature6: Search Routine
-Guest users can search existing routines
+Feature6: Update email
+This feature is only available to existing user and they can update their email
 
-Feature7: Update Routine
-This feature is only available to existing user and they can update their routines
+Feature7: Update username
+This feature is only available to existing user and they can update their username
 
 Feature8: Upload Profile Picture
 This feature is only available to existing user and they can upload/update their profile picture
-
-c.  Should include icon to show whether tests are passing/failing.
