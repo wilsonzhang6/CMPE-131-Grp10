@@ -12,8 +12,6 @@
 </style>
 
 <div class="default">
-    <a href="{{ url_for('logout') }}">Logout</a>
-
     <!-- current_user is a property of flask-login -->
     <img class="rounded-circle account-img" src="{{ image_file }}">
     <h1>Hi, {{ current_user.username }}!</h1>
