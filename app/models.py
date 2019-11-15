@@ -36,24 +36,6 @@ class Routine(db.Model):
     def __repr__(self):
         return '<Routine: {} {}>'.format(self.title, self.description)
 
-#class Task(db.Model):
- #   id = db.Column(db.Integer, primary_key=True)
-  #  taskname = db.Column(db.String(128), index=True)
-   # user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-   # mon = db.Column(db.Boolean, unique=False, default=True)
-   # tue = db.Column(db.Boolean, unique=False, default=True)
-   # wed = db.Column(db.Boolean, unique=False, default=True)
-   # thu = db.Column(db.Boolean, unique=False, default=True)
-   # fri = db.Column(db.Boolean, unique=False, default=True)
-   # sat = db.Column(db.Boolean, unique=False, default=True)
-   # sun = db.Column(db.Boolean, unique=False, default=True)
-
-    #def __repr__(self):
-    #    return '<Tasks {}>'.format(self.taskname)
-
-# class Routine(db.Model):    #made up of Task classes
- #   routinetitle = db.Column(db.String())
-
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
