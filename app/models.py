@@ -8,7 +8,6 @@ from flask_login import UserMixin
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True) #integer that is incremented when a new addition is added
-
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)
     email = db.Column(db.String(128), index=True, unique=True, nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')

@@ -12,8 +12,8 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <!--Bootstrap-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     </head>
     <style>
@@ -28,7 +28,7 @@
         /* This is the logo text itself*/
         #App-Logo{
             position: absolute;
-            top: 17px;
+            top: 10px;
             z-index: 3;
             font-family: "Oxegyn", sans-serif;
             font-style: normal;
@@ -83,7 +83,7 @@
             width: 55px;
             height: 53px;
             left: 20px;
-            top: 13px;
+            top: 12px;
             z-index: 3;
             transition: 0.3s;
         }
@@ -91,6 +91,7 @@
         .hamburger-menu:hover{
             color: #f1f1f1;
             transition: 0.3s;
+            text-decoration: none;
         }
 
         /*all below is for side navigation bar*/
@@ -133,13 +134,14 @@
             width: 55px;
             height: 53px;
             left: 20px;
-            top: 13px;
+            top: 12px;
             transition: 0.3s;
         }
 
         .closebtn:hover{
             color:white;
             transition: 0.3s;
+            text-decoration: none;
         }
     </style>
     <body>
@@ -154,6 +156,9 @@
                 {% if current_user.is_anonymous %}
                 <a href="{{ url_for('login') }}">Login</a>
                 {% else %}
+                <a href="">Your Feed</a><br>
+                <a href="">New Routine</a><br>
+                <a href="{{ url_for('index') }}">Your Account</a><br>
                 <a href="{{ url_for('logout') }}">Logout</a>
                 {% endif %}
             </div>
