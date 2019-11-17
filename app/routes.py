@@ -3,7 +3,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, CreateRoutineForm, UpdateAccountForm
-from app.models import User
+from app.models import User, Routine
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 import secrets, os
@@ -97,11 +97,12 @@ def index():
     return render_template('index.html', title='User Home', image_file=image_file, form=form)
 
 #Routine creation
-#This is entirely UNTESTED
+#This is entirely TESTED
+#needs submit button
 @app.route('/createroutine', methods=['GET', 'POST'])
 @login_required
 def createRoutine():
     form = CreateRoutineForm()
-    title = Title(title=form.title.data)
-    desc = Desc(description=form.description.data)
+    title = Routine(title=form.title.data)
+    desc = Routine(description=form.description.data)
     return render_template('createroutine.html', title='Create Routine', form = form)
