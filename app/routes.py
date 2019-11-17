@@ -97,7 +97,7 @@ def index():
     return render_template('index.html', title='User Home', image_file=image_file, form=form)
 
 #Routine creation
-#This is entirely TESTED
+#This is TESTED
 #needs submit button
 @app.route('/createroutine', methods=['GET', 'POST'])
 @login_required
