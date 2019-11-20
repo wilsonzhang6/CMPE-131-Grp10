@@ -3,26 +3,91 @@
 
 {% block content %}
 <style>
-    .default{
+   #account-image{
+        position: absolute; 
+        left: 80px; 
+        top: 50px; 
+        height: 75px; 
+        width: 75px
+    }
+
+    .account-top-info{
+        left: 180px; 
+        position: absolute;
+        width: 413px; 
+        height: 85px; 
+        top: 50px; 
+
+        text-transform: uppercase;
+        color: #C8C7C7;
+    }
+
+    .account-top-info a{
+        font-family: "Oxygen", sans-serif;
+        font-style: normal;
+        font-weight: 100;
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    #line-break-text{
+        left: 40px; 
+        position: absolute;
+        top: 155px; 
+        width: 1297px; 
+
+        font-family: "Oxygen", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 23px;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+
+        color: #C8C7C7;
+    }
+
+    #line-break{
+        left: 20px; 
+        position: absolute;
+        top: 160px; 
+
+        width: 1370px; 
+        border: 1px solid #C8C7C7;
+        transform: matrix(1, 0, 0, 1, 0, 0);
+    }
+
+    .update-form-area{
+        left: 120px; 
+        position: absolute;
+        top: 190px; 
+
         font-family: "Oxegyn", sans-serif;
         font-style: normal;
-        position: fixed;
-        top: 11%; 
     }
+
 </style>
 
-<div class="default">
-    <!-- current_user is a property of flask-login -->
-    <img class="rounded-circle account-img" src="{{ image_file }}">
-    <h1>Hi, {{ current_user.username }}!</h1>
-    <p class="text-secondary">{{ current_user.email }}</p>
+<!-- current_user is a property of flask-login -->
 
-    {% for post in posts %}
-    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
-    {% endfor %}
+<!--rounded-circle class part of boostrap-->
+<img id ="account-image" class="rounded-circle" src="{{ image_file }}">
+<div class="account-top-info">
+    <a id="display-username">{{ current_user.username }}</a>
+</div>
 
-    <!--The form to sign up-->
-    <h2>Update Account Info</h2>
+<!--Posts-->
+{% for post in posts %}
+<div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+{% endfor %}
+
+    <!--Line break-->
+    <a id="line-break-text">Update Account Information</a>
+    <hr id="line-break">
+
+<!--The form to update account-->
+<div class="update-form-area">
     <form action="" method="post" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <p>
@@ -47,8 +112,7 @@
         </p>
         <p>{{ form.submit(class_="update-account-button") }}</p>
     </form>
-
-
-
-    {% endblock %}:w
 </div>
+
+{% endblock %}:w
+
