@@ -3,19 +3,14 @@
 {% block content %}
 
 <style>
-    /* This was the default banner, also moving all page's content down 
-    a little bit for testing - to be removed later*/
-    .default{
-        font-family: "Oxegyn", sans-serif;
-        font-style: normal;
-        position: fixed;
-        top: 11%; 
-    }
-</style>
+#background-image{
+    background-image: url("https://images.pexels.com/photos/327394/pexels-photo-327394.jpeg");
+    background-size: cover; 
+    background-attachment: fixed;
+}
 
-<body>
-   <!--this is the top banner provided by teach-->
-   <div class="default"> 
-    </div>
+</style>
+<body id="background-image">
 </body>
+
 {% endblock %}
