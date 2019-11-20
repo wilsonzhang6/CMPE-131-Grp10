@@ -1,6 +1,4 @@
-Your project should have a README.md file with
-
-a.     Instructions on how to run your app.
+Instructions on how to run your app.
 on the terminal, we type the following for Python version 3.8:
 python3 -m flask run
 
