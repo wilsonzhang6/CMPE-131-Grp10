@@ -46,8 +46,11 @@ class CreateRoutineForm(FlaskForm):
     def validate_maxdesc(self, description):
         if len(description) > 2000:
             raise ValidationError('You have ', len(description), ' characters, the maximum is 2000 characters')
-    
-
+'''
+class ViewRoutineForm(FlaskForm):
+    something=StringField('something')
+    submit=SubmitField('View Routine')
+'''
 #Form for new account registration
 class UpdateAccountForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])

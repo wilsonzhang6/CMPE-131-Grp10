@@ -8,6 +8,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 import secrets, os
 from PIL import Image
+from datetime import date
 
 @app.route('/')
 
@@ -103,6 +104,20 @@ def index():
 @login_required
 def createRoutine():
     form = CreateRoutineForm()
-    title = Routine(title=form.title.data)
-    desc = Routine(description=form.description.data)
+    if form.validate_on_submit():
+        tasks = Routine(title=form.title.data, description=form.description.data, timestamp=date.today())
+        db.session.add(tasks)
+        db.session.commit()
+        next_page = url_for('viewpage.html')
+   # routine = Routine.query.filter_by(title=title.form.data).first()
+    #title = Routine(title=form.title.data)
+    #desc = Routine(description=form.description.data)
     return render_template('createroutine.html', title='Create Routine', form = form)
+
+#in progress
+#after adding the tasks using Create Routine method, it should direct to this View Routine page
+@app.route('/viewroutine', methods=['GET','POST'])
+def viewRoutine():
+    form=ViewRoutineForm()
+    if form.validate_on_submit():
+        return render_template('viewroutine.html', title='View Routine',form=form)
