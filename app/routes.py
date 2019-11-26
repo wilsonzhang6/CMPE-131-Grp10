@@ -104,17 +104,17 @@ def index():
 @login_required
 def createRoutine():
     form = CreateRoutineForm()
-    if form.validate_on_submit():
+    if form.validate_on_submit(): #added this part
         tasks = Routine(title=form.title.data, description=form.description.data, timestamp=date.today())
         db.session.add(tasks)
-        db.session.commit()
+        db.session.commit() 
         next_page = url_for('viewpage.html')
    # routine = Routine.query.filter_by(title=title.form.data).first()
     #title = Routine(title=form.title.data)
     #desc = Routine(description=form.description.data)
     return render_template('createroutine.html', title='Create Routine', form = form)
 
-#in progress
+#IN PROGRESS
 #after adding the tasks using Create Routine method, it should direct to this View Routine page
 @app.route('/viewroutine', methods=['GET','POST'])
 def viewRoutine():
