@@ -108,7 +108,7 @@ def createRoutine():
         tasks = Routine(title=form.title.data, description=form.description.data, timestamp=date.today())
         db.session.add(tasks)
         db.session.commit() 
-        next_page = url_for('viewpage.html')
+        return redirect (url_for('viewroutine.html'))
    # routine = Routine.query.filter_by(title=title.form.data).first()
     #title = Routine(title=form.title.data)
     #desc = Routine(description=form.description.data)
@@ -118,6 +118,7 @@ def createRoutine():
 #after adding the tasks using Create Routine method, it should direct to this View Routine page
 @app.route('/viewroutine', methods=['GET','POST'])
 def viewRoutine():
-    form=ViewRoutineForm()
-    if form.validate_on_submit():
-        return render_template('viewroutine.html', title='View Routine',form=form)
+    task = Routine()
+    #form= ViewRoutineForm()
+    #f form.validate_on_submit():
+    return render_template('viewroutine.html', title='View Routine', task=task)
