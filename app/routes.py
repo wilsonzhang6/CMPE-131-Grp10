@@ -116,6 +116,7 @@ def createRoutine():
 
 #IN PROGRESS
 #after adding the tasks using Create Routine method, it should direct to this View Routine page
+#When clicked on Your Feed, it should display routines added in createroutine form
 @app.route('/viewroutine', methods=['GET','POST'])
 def viewRoutine():
     task = Routine()
