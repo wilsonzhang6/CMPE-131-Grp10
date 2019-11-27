@@ -160,7 +160,7 @@
                 {% if current_user.is_anonymous %}
                 <a href="{{ url_for('login') }}">Login</a>
                 {% else %}
-                <a href="">Your Feed</a><br>
+                <a href="{{url_for('viewRoutine')}}">Your Feed</a><br>
                 <a href="{{ url_for('createRoutine') }}">New Routine</a><br>
                 <a href="{{ url_for('index') }}">Your Account</a><br>
                 <a href="{{ url_for('logout') }}">Logout</a>
