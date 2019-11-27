@@ -2,14 +2,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="" method="POST">
-    abcd
-
-{{from.something(placeholder="addsoemthing...")}}
-{{ form.submit(class_="btn btn-primary") }}
-
-</form>
-  
+<h1>Hi, {{ current_user.username }}!</h1>
+    <div>
+      <p> Your Routines are:</p>
+      <!--this should display routines added in createroutine form-->
+        <b>{{task.title}}</b> : <b>{{task.description}}</b>
+    </div>
+{% endblock %}
 <!--
   <form action = "" method = "post">
     
@@ -19,5 +18,15 @@
     <br>
     {{ form.submit(class_="btn btn-primary") }}
   </form>
+
+  
+#extra stuff for testing
+<form action="" method="POST">
+    abcd
+
+{{from.something(placeholder="addsoemthing...")}}
+{{ form.submit(class_="btn btn-primary") }}
+
+</form>
+
 -->
-{% endblock %}
