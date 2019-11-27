@@ -38,5 +38,3 @@ class CreateRoutineForm(FlaskForm):
     sunday = BooleanField('Sunday')
     task = StringField('Task: ')
     add = SubmitField('Add Task')
-
-#testing
