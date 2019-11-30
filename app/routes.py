@@ -77,7 +77,7 @@ def save_picture(form_picture):
 
     return picture_fn
 
-#User's home page, currently includes a form that allows user to update personal info
+#User's account page, currently includes a form that allows user to update personal info
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
