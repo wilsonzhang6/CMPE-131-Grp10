@@ -3,7 +3,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextField, TextAreaField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import User, Routine
 import calendar
@@ -37,8 +37,9 @@ class RegistrationForm(FlaskForm):
 #Form for creating Routine
 class CreateRoutineForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
-    description = StringField('Description', validators=[DataRequired()])
-    submit = SubmitField('Create Routine')
+    #description = StringField('Description', validators=[DataRequired()])
+    description = TextAreaField('Description', validators=[DataRequired()])
+    submit = SubmitField('Routine')
 
     def validate_maxtitle(self, title):
         if len(title) > 100:
@@ -48,7 +49,8 @@ class CreateRoutineForm(FlaskForm):
             raise ValidationError('You have ', len(description), ' characters, the maximum is 2000 characters')
 '''
 class ViewRoutineForm(FlaskForm):
-    something=StringField('something')
+    title=StringField('something')
+    description = StringField('description')
     submit=SubmitField('View Routine')
 '''
 #Form for new account registration
