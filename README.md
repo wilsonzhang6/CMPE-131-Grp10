@@ -1,3 +1,7 @@
+travis-ci
+https://travis-ci.org/wilsonzhang6/CMPE-131-Grp10.svg?branch=master
+
+
 Instructions on how to run your app.
 on the terminal, we type the following for Python version 3.8:
 python3 -m flask run
