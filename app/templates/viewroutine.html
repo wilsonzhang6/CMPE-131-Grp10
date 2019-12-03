@@ -1,32 +1,19 @@
 <!--incomplete-->
 {% extends "base.html" %}
 
-{% block content %}
-<h1>Hi, {{ current_user.username }}!</h1>
-    <div>
-      <p> Your Routines are:</p>
-      <!--this should display routines added in createroutine form-->
-        <b>{{task.title}}</b> : <b>{{task.description}}</b>
-    </div>
-{% endblock %}
-<!--
-  <form action = "" method = "post">
-    
-    {{form.title(placeholder="TITLE")}}
-    <br>
-    {{form.description(placeholder=" DESCRIPTION")}}
-    <br>
-    {{ form.submit(class_="btn btn-primary") }}
-  </form>
+{% block content%}
 
-  
-#extra stuff for testing
-<form action="" method="POST">
-    abcd
+  {% for routine in routines %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ routine.author.username }}</a>
+              <h2 class="text-muted">{{ routine.timestamp.strftime('%Y-%m-%d') }}</h2>
+            </div>
+            <h2><a class="article-title" href="{{ url_for('routine', routine_id=routine.id) }}">{{ routine.title }}</a></h2>
+            <p class="article-content">{{ routine.description }}</p>
+          </div>
+        </article>
+  {% endfor %}
 
-{{from.something(placeholder="addsoemthing...")}}
-{{ form.submit(class_="btn btn-primary") }}
-
-</form>
-
--->
+{% endblock content %}
