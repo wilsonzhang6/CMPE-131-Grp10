@@ -1,0 +1,71 @@
+
+#this was from routes.py
+#IN PROGRESS
+#after adding the tasks using Create Routine method, it should direct to this View Routine page
+#When clicked on Your Feed, it should display routines added in createroutine form
+@app.route('/viewroutine', methods=['GET','POST'])
+def viewRoutine():
+    tasks= Task.query.all()
+    return render_template('viewroutine.html', tasks=tasks)
+
+    
+'''
+    form=ViewRoutineForm()
+    if form.validate_on_submit():
+        task = Routine()
+    #form= ViewRoutineForm()
+    #f form.validate_on_submit():
+    return render_template('viewroutine.html', title='View Routine', task=task, form=form)
+'''
+
+#this was from viewroutine.html
+  
+<!--
+{% block content %}
+    {% for post in posts %}
+        <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ task.author.username }}</a>
+              <small class="text-muted">{{ task.date_posted.strftime('%Y-%m-%d') }}</small>
+            </div>
+            <h2><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ task.title }}</a></h2>
+            <p class="article-content">{{ task.content }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
+      -->
+<!--
+{% block content %}
+<h1>Hi, {{ current_user.username }}!</h1>
+    <div>
+      <p> Your Routines are:</p>
+        {{task.datetime}}
+        <b>{{task.title}}</b> : <b>{{task.description}}</b>
+
+    </div>
+{% endblock %}
+  -->
+<!--
+  <form action = "" method = "post">
+    
+    {{form.title(placeholder="TITLE")}}
+    <br>
+    {{form.description(placeholder=" DESCRIPTION")}}
+    <br>
+    {{ form.submit(class_="btn btn-primary") }}
+  </form>
+
+  
+#extra stuff for testing
+<form action="" method="POST">
+    abcd
+
+{{from.something(placeholder="addsoemthing...")}}
+{{ form.submit(class_="btn btn-primary") }}
+
+</form>
+
+-->
