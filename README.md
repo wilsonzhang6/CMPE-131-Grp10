@@ -2,9 +2,6 @@ Instructions on how to run your app.
 on the terminal, we type the following for Python version 3.8:
 python3 -m flask run
 
-Visva is using Python version 2.7 and code only works with that version so she has to type:
-python -m flask run
-
 b.    Describes all 8 features and how to verify that they were implemented.
 Feature1: Login
 Existing user can login with username and password
