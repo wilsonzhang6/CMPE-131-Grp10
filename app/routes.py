@@ -1,6 +1,6 @@
 #provided by teach
 #routes URL
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, abort
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, CreateRoutineForm, UpdateAccountForm
 from app.models import User, Routine
@@ -16,6 +16,11 @@ from datetime import date
 @app.route('/home') 
 def home():
      return render_template('home.html', title='Home') #problem
+
+@app.route("/viewroutine")
+def viewroutine():
+    routines= Routine.query.all()
+    return render_template('viewroutine.html', routines=routines)
 
 #Login page
 @app.route('/login', methods=['GET', 'POST'])
@@ -100,26 +105,54 @@ def index():
 #Routine creation
 #This is TESTED
 #needs submit button
-@app.route('/createroutine', methods=['GET', 'POST'])
+@app.route('/routine/new', methods=['GET', 'POST'])
 @login_required
 def createRoutine():
     form = CreateRoutineForm()
     if form.validate_on_submit(): #added this part
-        tasks = Routine(title=form.title.data, description=form.description.data, timestamp=date.today())
-        db.session.add(tasks)
-        db.session.commit() 
-        return redirect (url_for('viewroutine.html'))
+        #tasks = Routine(title=form.title.data, description=form.description.data, timestamp=date.today())
+        routine = Routine(title=form.title.data, description=form.description.data, author=current_user)
+        db.session.add(routine)
+        db.session.commit()
+        flash('Your routine has been created!', 'success')
+        return redirect(url_for('viewroutine'))
    # routine = Routine.query.filter_by(title=title.form.data).first()
     #title = Routine(title=form.title.data)
     #desc = Routine(description=form.description.data)
-    return render_template('createroutine.html', title='Create Routine', form = form)
+    return render_template('createtask.html', title='Create Routine', form = form, legend='New Routine')
 
-#IN PROGRESS
-#after adding the tasks using Create Routine method, it should direct to this View Routine page
-#When clicked on Your Feed, it should display routines added in createroutine form
-@app.route('/viewroutine', methods=['GET','POST'])
-def viewRoutine():
-    task = Routine()
-    #form= ViewRoutineForm()
-    #f form.validate_on_submit():
-    return render_template('viewroutine.html', title='View Routine', task=task)
+@app.route("/routine/<int:routine_id>")
+def routine(routine_id):
+    routine= Routine.query.get_or_404(routine_id)
+    return render_template('routine.html', title=routine.title,routine=routine)
+
+@app.route("/routine/<int:routine_id>/update", methods=['GET', 'POST'])
+@login_required
+def update_routine(routine_id):
+    routine = Routine.query.get_or_404(routine_id)
+    if routine.author != current_user:
+        abort(403)
+    form = CreateRoutineForm()
+    if form.validate_on_submit():
+        routine.title = form.title.data
+        routine.description = form.description.data
+        db.session.commit()
+        flash('Your routine has been updated!', 'success')
+        return redirect(url_for('routine', routine_id=routine.id))
+    elif request.method == 'GET':
+        form.title.data = routine.title
+        form.description.data = routine.description
+    return render_template('createtask.html', title='Update Routine',
+                           form=form, legend='Update Routine')
+
+
+@app.route("/routine/<int:routine_id>/delete", methods=['POST'])
+@login_required
+def delete_routine(routine_id):
+    routine = Routine.query.get_or_404(routine_id)
+    if routine.author != current_user:
+        abort(403)
+    db.session.delete(routine)
+    db.session.commit()
+    flash('Your routine has been deleted!', 'success')
+    return redirect(url_for('viewroutine'))
