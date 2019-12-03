@@ -13,6 +13,7 @@
     
 
     <body>
+<<<<<<< HEAD
       <a href="{{url_for('home') }}"><b class="btn btn-primary">Home</b></a>
       &nbsp;
 
@@ -48,6 +49,73 @@
       {% endif %}
       {% endwith %}
       {% block content %}{% endblock %}
+=======
+
+        <!--this is the hamburger menu icon-->
+        <a id="hamburger-menu-open" class="hamburger-menu" href="#" onclick="openSideNavBar()">&#9776;</a>
+        <a id="hamburger-menu-close" class="closebtn" href="javascript:void(0)" onclick="closeSideNavBar()">&#9776;</a>
+        <div id="sideNavBarPanel" class="sideNavBarPanelC">
+            <br>
+            <br>
+            <br>
+            <br>
+            <div id="sideNavLinks">
+                {% if current_user.is_anonymous %}
+                <a href="{{ url_for('login') }}">Login</a>
+                {% else %}
+                <!--<a href="{{url_for('createRoutine')}}">Your Feed</a><br>-->
+                <a href="{{url_for('viewroutine') }}"">Your Feed</a><br>
+                <a href="{{ url_for('createRoutine') }}">New Routine</a><br>
+                <a href="{{ url_for('index') }}">Your Account</a><br>
+                <a href="{{ url_for('logout') }}">Logout</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!--java script for side nav bar-->
+        <script>
+            function openSideNavBar() {
+             document.getElementById("sideNavBarPanel").style.width = "240px";
+             document.getElementById("hamburger-menu-open").style.zIndex = "0"
+             document.getElementById("hamburger-menu-close").style.zIndex = "4"
+            }
+            
+            function closeSideNavBar() {
+              document.getElementById("sideNavBarPanel").style.width = "0"; 
+              document.getElementById("hamburger-menu-open").style.zIndex = "4"
+              document.getElementById("hamburger-menu-close").style.zIndex = "0"
+            }
+        </script>
+        
+        <!--This is the Banner-->
+        <area shape="rect", class="banner">
+            <p>
+                <!--App logo - it needs an href linked to the home page once created-->
+                <a id="App-Logo" href="{{ url_for('home') }}">
+                    T A S K R O U T E 
+                </a>
+            </p>
+        </area>
+
+
+        <!--Default code provided by teach's template, to be removed later-->
+        <div class=default>
+
+            <!--renders flash messages, do not touch-->
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            <!--block content start-->
+            {% block content %}
+            {% endblock %}
+        </div>
+>>>>>>> 4e1a9ed... added url_for - Your Feed part
     </body>
 
 </html>
