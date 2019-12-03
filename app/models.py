@@ -10,9 +10,14 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True, unique=True)
     password_hash = db.Column(db.String(128))
+<<<<<<< HEAD
     todos=db.relationship("Todo", backref="user", lazy='dynamic')
     #posts = db.relationship('Post', backref='author', lazy='dynamic')
     #tasks=db.relationship('Task', backref='author', lazy='dynamic')
+=======
+    #routines = db.relationship('Routine', backref='author', lazy='dynamic')
+    routines = db.relationship('Routine', backref='author', lazy=True)
+>>>>>>> bdefaa5... minor timestamp change
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -25,9 +30,16 @@ class User(UserMixin, db.Model):
 '''
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+<<<<<<< HEAD
     body = db.Column(db.String(256))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+=======
+    title = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text(2000), nullable=False)
+    #timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+>>>>>>> bdefaa5... minor timestamp change
 
     def __repr__(self):
         return '<Posts {}>'.format(self.body)
@@ -53,6 +65,7 @@ class Task(db.Model):
     sun = db.Column(db.Boolean, unique=False, default=True)
 
     def __repr__(self):
+<<<<<<< HEAD
         return '<Tasks {}>'.format(self.taskname)
 '''
 '''
@@ -72,7 +85,20 @@ class Task(db.Model):
  class Routine(db.Model):    #made up of Task classes
    routinetitle = db.Column(db.String())
 '''
+=======
+        return '<Routine: {} {} {}>'.format(self.title, self.description, self.timestamp)
+>>>>>>> bdefaa5... minor timestamp change
 
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+<<<<<<< HEAD
+=======
+
+
+
+'''
+    def __repr__(self):
+        return f"Routine('{self.title}', '{self.description}', '{self.timestamp}')"
+'''
+>>>>>>> bdefaa5... minor timestamp change
