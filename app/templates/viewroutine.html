@@ -1,0 +1,19 @@
+<!--incomplete-->
+{% extends "base.html" %}
+
+{% block content%}
+
+  {% for routine in routines %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ routine.author.username }}</a>
+              <h2 class="text-muted">{{ routine.timestamp.strftime('%Y-%m-%d') }}</h2>
+            </div>
+            <h2><a class="article-title" href="{{ url_for('routine', routine_id=routine.id) }}">{{ routine.title }}</a></h2>
+            <p class="article-content">{{ routine.description }}</p>
+          </div>
+        </article>
+  {% endfor %}
+
+{% endblock content %}
