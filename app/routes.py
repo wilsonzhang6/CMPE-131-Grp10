@@ -162,6 +162,7 @@ def viewroutine():
     routines= Routine.query.all()
     return render_template('viewroutine.html', routines=routines)
 
+'''
 #Search - NOT WORKING
 @app.route('/search', methods=['GET', 'POST'])
 @login_required
@@ -174,3 +175,4 @@ def search():
     routines = Routine.query.order_by(Routine.title).all()
     return render_template('viewroutine.html', routines = routines, form=form)
     
+'''
