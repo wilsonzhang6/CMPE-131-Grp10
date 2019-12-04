@@ -3,7 +3,9 @@
 
 {% block content%}
 
+
   {% for routine in routines %}
+    {% if routine.author == current_user %}
         <article class="media content-section">
           <div class="media-body">
             <div class="article-metadata">
@@ -14,6 +16,8 @@
             <p class="article-content">{{ routine.description }}</p>
           </div>
         </article>
+    {% endif %}
   {% endfor %}
+
 
 {% endblock content %}
