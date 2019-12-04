@@ -2,15 +2,13 @@
 #routes URL
 from flask import render_template, flash, redirect, url_for, request, abort
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, CreateRoutineForm, UpdateAccountForm, searchForm
+from app.forms import LoginForm, RegistrationForm, CreateRoutineForm, UpdateAccountForm
 from app.models import User, Routine
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 import secrets, os
 from PIL import Image
 from datetime import date
-from sqlalchemy import desc
-
 
 @app.route('/')
 
@@ -18,7 +16,6 @@ from sqlalchemy import desc
 @app.route('/home') 
 def home():
      return render_template('home.html', title='Home') #problem
-
 
 #Login page
 @app.route('/login', methods=['GET', 'POST'])
@@ -161,18 +158,3 @@ def delete_routine(routine_id):
 def viewroutine():
     routines= Routine.query.all()
     return render_template('viewroutine.html', routines=routines)
-
-'''
-#Search - NOT WORKING
-@app.route('/search', methods=['GET', 'POST'])
-@login_required
-def search():
-    form = searchForm()
-    routines = Routine.query
-    if form.validate_on_submit():
-        routines = Routine.query.filter(Routine.title.like('%' + form.routineName.data + '%'))
-    
-    routines = Routine.query.order_by(Routine.title).all()
-    return render_template('viewroutine.html', routines = routines, form=form)
-    
-'''
