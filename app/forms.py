@@ -70,8 +70,8 @@ class UpdateAccountForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first()
             if user is not None:
                 raise ValidationError('Please use a different email address.')
-
+'''
 #Search-NotWorking
 class searchForm(FlaskForm):
     routineName = StringField('Search routine', validators=[DataRequired()])
-
+'''
