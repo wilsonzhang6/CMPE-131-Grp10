@@ -17,6 +17,7 @@ from datetime import date
 def home():
      return render_template('home.html', title='Home') #problem
 
+#Your Feed page
 @app.route("/viewroutine")
 def viewroutine():
     routines= Routine.query.all()
