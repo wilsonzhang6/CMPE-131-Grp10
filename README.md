@@ -32,3 +32,6 @@ This feature is only available to existing user and they can update their userna
 
 Feature8: Upload Profile Picture
 This feature is only available to existing user and they can upload/update their profile picture
+
+Feature9: Change Password
+This feature is usable by all however only applies to existing users. 
