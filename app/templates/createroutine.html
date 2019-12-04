@@ -1,15 +1,8 @@
 {% extends "base.html" %}
+
 {% block content %}
 
-<style>
-  .create-routine-page{
-    position: absolute; 
-    top: 15%;
-  }
 
-</style>
-
-<div class="create-routine-page">
   <form action = "" method = "post">
     
     {{form.title(placeholder="TITLE")}}
@@ -18,7 +11,5 @@
     <br>
     {{ form.submit(class_="btn btn-primary") }}
   </form>
-</div>
-  
 
 {% endblock %}
