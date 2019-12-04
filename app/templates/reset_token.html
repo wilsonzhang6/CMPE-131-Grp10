@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <style>
+        /*This is the profile login picture*/
+        .material-icons.security-icon{
+            font-size: 150px;
+            text-align: center;
+            position: absolute;
+            left: 649px;
+            top: 150px;
+        }   
+
+        /*this is the signup password area*/
+        .reset-password{
+            position: absolute; 
+            width: 556px;
+            height: 50px;
+            left: 442px; 
+            top: 315px; 
+            background: #FFFFFF; 
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 7px; 
+
+            /*this is for the placeholder text*/
+            font-family: "Oxygen", sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 24px;
+            line-height: 30px;
+        }
+
+        /*this is the signup repeat password area*/
+        .reset-repeatpassword{
+            position: absolute; 
+            width: 556px;
+            height: 50px;
+            left: 442px; 
+            top: 383px; 
+            background: #FFFFFF; 
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 7px; 
+
+            /*this is for the placeholder text*/
+            font-family: "Oxygen", sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 24px;
+            line-height: 30px;
+        }
+
+        .reset-button{
+            font-family: 'Oxygen', sans-serif;
+            position: absolute;
+            text-transform: uppercase;
+            color: rgba(0, 0, 0, 0.54);
+            font-style: normal;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 23px;
+            width: 228px;
+            height: 50px;
+            left: 770px;
+            top: 461px;
+            background: #EB5757;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-color: #EB5757;
+            border-radius: 7px;
+        }
+    
+    </style>
+
+    <div class="reset-token-page">
+        <!--this is the security icon-->
+        <i class="material-icons security-icon">security</i>
+
+        <!--The form to reset-->
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.password(class_="reset-password", size=32, placeholder=" NEW PASSWORD") }}<br>
+                {% for error in form.password.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.password2(class_="reset-repeatpassword", size=32, placeholder=" REPEAT PASSWORD") }}<br>
+                {% for error in form.password2.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>{{ form.submit(class_="reset-button") }}</p>
+        </form>
+    </div>
+{% endblock %}
