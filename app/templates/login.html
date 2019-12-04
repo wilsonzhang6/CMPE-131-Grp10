@@ -104,8 +104,12 @@
         <p>
             {{ form.password(class_="login-password", placeholder=" PASSWORD", size=32) }}
         </p>
-        <!--p>{{ form.remember_me() }} {{ form.remember_me.label }}</p-->
         <p>{{ form.submit(class_="login-button") }}</p>
          <p><a id="signup-link" href="{{ url_for('register') }}">Don't have an account? </a></p>
+         <br>
+         <br>
+         <br>
+         <p><a href = "{{ url_for('reset_request')}}">Forgot Password?</a></p>
     </form>
+    
 {% endblock %}

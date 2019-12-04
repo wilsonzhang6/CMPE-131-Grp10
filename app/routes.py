@@ -101,8 +101,6 @@ def index():
     return render_template('index.html', title='User Home', image_file=image_file, form=form)
 
 #Routine creation
-#This is TESTED
-#needs submit button
 @app.route('/routine/new', methods=['GET', 'POST'])
 @login_required
 def createRoutine():
@@ -140,8 +138,7 @@ def update_routine(routine_id):
     elif request.method == 'GET':
         form.title.data = routine.title
         form.description.data = routine.description
-    return render_template('createtask.html', title='Update Routine',
-                           form=form, legend='Update Routine')
+    return render_template('createtask.html', title='Update Routine', form=form, legend='Update Routine')
 
 
 @app.route("/routine/<int:routine_id>/delete", methods=['POST'])
