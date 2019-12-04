@@ -25,8 +25,8 @@ app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 
 #SET Environment variable or hard code in a gmail account
-app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
-app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
+app.config['MAIL_USERNAME'] = 'taskroutecmpe131@gmail.com'
+app.config['MAIL_PASSWORD'] = '15spLW#GY*m6'
 mail = Mail(app)
 
 #import models (tables) for database

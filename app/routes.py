@@ -164,7 +164,7 @@ def send_reset_email(user):
                     sender='noreply@taskroute.com', 
                     recipients=[user.email])
 
-    msg.body = '''
+    msg.body = f'''
     Click on the following link to reset your password:
     {url_for('reset_token', token=token, _external=True)}
 
