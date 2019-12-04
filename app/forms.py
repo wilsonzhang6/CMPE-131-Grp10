@@ -70,4 +70,13 @@ class UpdateAccountForm(FlaskForm):
         if email.data != current_user.email:
             user = User.query.filter_by(email=email.data).first()
             if user is not None:
+<<<<<<< HEAD
                 raise ValidationError('Please use a different email address.')
+=======
+                raise ValidationError('Please use a different email address.')
+
+#Search-NotWorking
+class searchForm(FlaskForm):
+    routineName = StringField('Search routine', validators=[DataRequired()])
+
+>>>>>>> parent of 1a234a3... Revert "search function"
