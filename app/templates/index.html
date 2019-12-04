@@ -1,8 +1,13 @@
 <!--This is the users' home page once they login-->
 {% extends "base.html" %}
-
 {% block content %}
 <style>
+    /*css code for the general page area - currently used for positioning relative to banner*/
+    .user-account-page{
+        position: absolute; 
+        top: 100px; 
+    }
+
     .account-top-info-component{
         position: absolute; 
         left: 80px; 
@@ -62,23 +67,17 @@
 
     .update-form-area{
         position: absolute;
-        left: 120px; 
+        left: 180px; 
         top: 190px; 
 
         font-family: "Oxegyn", sans-serif;
         font-style: normal;
     }
 
-    /*css code for the general page area - currently used for positioning relative to banner*/
-    .account-area-component{
-        position: absolute; 
-        top: 100px; 
-    }
-
 </style>
 
 <!-- current_user is a property of flask-login -->
-<div class="account-area-component">
+<div class="user-account-page">
 
     <!--rounded-circle class part of boostrap-->
     <div class="account-top-info-component">
@@ -90,14 +89,15 @@
         </div>
     </div>
 
-    <!--Posts-->
+    <!--Posts
     {% for post in posts %}
     <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
     {% endfor %}
+    -->
 
-        <!--Line break-->
-        <a id="line-break-text">Update Account Information</a>
-        <hr id="line-break">
+    <!--Line break-->
+    <a id="line-break-text">Update Account Information</a>
+    <hr id="line-break">
 
     <!--The form to update account-->
     <div class="update-form-area">
@@ -123,6 +123,8 @@
                     {% endfor %}
                 {% endif %}
             </p>
+
+
             <p>{{ form.submit(class_="update-account-button") }}</p>
         </form>
     </div>

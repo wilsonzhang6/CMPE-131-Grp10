@@ -1,10 +1,10 @@
 #provided by teach
 #this is the database and database classes
 from datetime import datetime
-from app import db #import from upper directory level
-from app import login #import from upper directory level
+from app import db, login, app
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True) #integer that is incremented when a new addition is added
@@ -12,9 +12,9 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(128), index=True, unique=True, nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password_hash = db.Column(db.String(128))
-    #routines = db.relationship('Routine', backref='author', lazy='dynamic')
     routines = db.relationship('Routine', backref='author', lazy=True)
 
+#Registration - Set Password
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
@@ -24,12 +24,25 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User {} {}>'.format(self.username, self.email)    
 
+#For password reset
+    def get_reset_token(self, expire_seconds=900):
+        s = Serializer(app.config['SECRET_KEY'], expire_seconds)
+        return s.dumps({'user_id': self.id}).decode('utf-8')
+
+    def verify_reset_token(token):
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            user_id = s.loads(token)['user_id']
+        except:
+            return None
+        return User.query.get(user_id)
+
+
 #This is modified to be a routine/post
 class Routine(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text(2000), nullable=False)
-    #timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
      #this is the author of the routine
