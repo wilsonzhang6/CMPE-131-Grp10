@@ -35,3 +35,9 @@ This feature is only available to existing user and they can upload/update their
 
 Feature9: Change Password
 This feature is usable by all however only applies to existing users. 
+
+Feature10: Hamburger side panel menu
+This feature is usable by all - CSS fuction
+
+Feature11: Homepage slide show
+Feature is seen by all. 

@@ -3,14 +3,73 @@
 {% block content %}
 
 <style>
-#background-image{
-    background-image: url("https://images.pexels.com/photos/327394/pexels-photo-327394.jpeg");
-    background-size: cover; 
-    background-attachment: fixed;
-}
+    /*
+    #background-image{
+        background-size: cover; 
+        background-attachment: fixed;
+    }*/
+
+    .crossfade > figure {
+        position: absolute;
+        animation: imageAnimation 12s linear infinite 0s; 
+        backface-visibility: hidden;
+        background-size: cover;
+        background-position: center center;
+        color: transparent;
+        height: 100%; 
+        left: 0px;
+        opacity: 0; 
+        top: 0px; 
+        width: 100%; 
+        z-index: 0;
+    }
+
+    .crossfade >figure:nth-child(1){
+        background-image: url("https://images.pexels.com/photos/327394/pexels-photo-327394.jpeg");
+    }
+    .crossfade >figure:nth-child(2){
+        animation-delay: 4s; 
+        background-image: url("https://images.pexels.com/photos/209652/pexels-photo-209652.jpeg");
+    }
+    .crossfade >figure:nth-child(3){
+        animation-delay: 8s; 
+        background-image: url("https://images.pexels.com/photos/7376/startup-photos.jpg");
+    }
+
+    @keyframes
+    imageAnimation{ 
+        0% {
+            animation-timing-function: ease-in;
+            opacity: 0;
+        }
+
+        18%{
+            animation-timing-function: ease-out;
+            opacity: 1; 
+        }
+        36%{
+            opacity: 1; 
+        }
+
+        54%{
+            opacity: 0; 
+        }
+
+        100% {
+            opacity: 0; 
+        }
+    }
 
 </style>
 <body id="background-image">
+
+    <div class="crossfade">
+        <figure></figure>
+        <figure></figure>
+        <figure></figure>
+    </div>
+
+
 </body>
 
 {% endblock %}
