@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .reset-token-page{
+        position: absolute;
+        top: 15%;
+
+        font-family: 'Oxygen', sans-serif;
+    }
+
+</style>
+
+
+<div class="reset-token-page">
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.password(class_="reset-password", size=32, placeholder=" PASSWORD") }}<br>
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password2(class_="reset-repeatpassword", size=32, placeholder=" REPEAT PASSWORD") }}<br>
+            {% for error in form.password2.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        
+        <p>{{ form.submit(class_="reset-password-submit-button") }}</p>
+    </form>
+</div>
+
+{% endblock content %}

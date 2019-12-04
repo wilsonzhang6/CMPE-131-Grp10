@@ -1,14 +1,15 @@
 #provided by teach
 #routes URL
 from flask import render_template, flash, redirect, url_for, request, abort
-from app import app, db
-from app.forms import LoginForm, RegistrationForm, CreateRoutineForm, UpdateAccountForm
+from app import app, db, mail
+from app.forms import LoginForm, RegistrationForm, CreateRoutineForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
 from app.models import User, Routine
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 import secrets, os
 from PIL import Image
 from datetime import date
+from flask_mail import Message
 
 @app.route('/')
 
@@ -98,8 +99,6 @@ def index():
     return render_template('index.html', title='User Home', image_file=image_file, form=form)
 
 #Routine creation
-#This is TESTED
-#needs submit button
 @app.route('/routine/new', methods=['GET', 'POST'])
 @login_required
 def createRoutine():
@@ -137,8 +136,7 @@ def update_routine(routine_id):
     elif request.method == 'GET':
         form.title.data = routine.title
         form.description.data = routine.description
-    return render_template('createtask.html', title='Update Routine',
-                           form=form, legend='Update Routine')
+    return render_template('createtask.html', title='Update Routine', form=form, legend='Update Routine')
 
 
 @app.route("/routine/<int:routine_id>/delete", methods=['POST'])
@@ -158,3 +156,51 @@ def delete_routine(routine_id):
 def viewroutine():
     routines= Routine.query.all()
     return render_template('viewroutine.html', routines=routines)
+
+
+def send_reset_email(user):
+    token = user.get_reset_token()
+    msg = Message('Password Reset Request', 
+                    sender='noreply@taskroute.com', 
+                    recipients=[user.email])
+
+    msg.body = '''
+    Click on the following link to reset your password:
+    {url_for('reset_token', token=token, _external=True)}
+
+    If you did not make this request then ignore this email
+    '''
+    mail.send(msg)
+
+
+@app.route('/reset_password', methods=['GET', 'POST'])
+def reset_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+
+    form = RequestResetForm()
+
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        send_reset_email(user)
+        flash('A password reset email has been sent')
+        return redirect(url_for('login'))
+    return render_template('reset_request.html', title='Reset_Password', form=form)
+
+@app.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    user = User.verify_reset_token(token)
+
+    if user is None:
+        flash('Invalid or Expired Token', 'warning')
+        return redirect(url_for('reset_request'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user.set_password(form.password.data)
+        db.session.commit()
+        flash('Your password has been changed!')
+        return redirect(url_for('login'))
+
+    return render_template('reset_token.html', title='Reset_Password', form=form)

@@ -1,7 +1,14 @@
 {% extends "base.html" %}
-
 {% block content %}
-<div class="content-section">
+
+<style>
+    .create-task-page{
+        position: absolute; 
+        top: 15%;
+    }
+</style>
+
+<div class="create-task-page">
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
