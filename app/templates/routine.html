@@ -5,12 +5,19 @@
     <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + routine.author.image_file) }}">
     <div class="media-body">
       <div class="article-metadata">
-        <h2 class="mr-2">{{ routine.author.username }}</h2>
-        <small class="text-muted">{{ routine.timestamp.strftime('%Y-%m-%d') }}</small>
+        <h1>{{ routine.author.username }}</h1>
+        <small>{{ routine.timestamp.strftime('%Y-%m-%d') }}</small>
         {% if routine.author == current_user %}
           <div>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_routine', routine_id=routine.id) }}">Update</a>
+            <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('update_routine', routine_id=routine.id) }}">Update</a>
+            
+            <form action="{{ url_for('delete_routine', routine_id=routine.id) }}" method="POST">
+            <input class="btn btn-danger btn-sm mt-1 mb-1" type="submit" value="Delete">
+            </form>
+            <!--Modal Part--NOT USING-->
+            <!--
             <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+            -->
           </div>
         {% endif %}
       </div>
@@ -18,7 +25,9 @@
       <p class="article-content">{{ routine.description }}</p>
     </div>
   </article>
-  <!-- Modal -->
+{% endblock content %}
+  <!-- Modal--NOT USING -->
+  <!--
   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -37,4 +46,4 @@
       </div>
     </div>
   </div>
-{% endblock content %}
+  -->
