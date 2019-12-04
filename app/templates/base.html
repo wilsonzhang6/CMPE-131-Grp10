@@ -163,6 +163,10 @@
                     <a href="{{ url_for('login') }}">Login</a>
                     {% else %}
                     <!--<a href="{{url_for('createRoutine')}}">Your Feed</a><br>-->
+                    <!--Search-NOT WORKING-->
+                    <!--
+                    <input type="text" class="form-comtrol" placeholder="Search"><a class="btn btn-primary btn-sm mt-1 mb-1" href="{{url_for('search') }}">Search</a>       
+                    -->
                     <a href="{{url_for('viewroutine') }}"">Your Feed</a><br>
                     <a href="{{ url_for('createRoutine') }}">New Routine</a><br>
                     <a href="{{ url_for('index') }}">Your Account</a><br>
