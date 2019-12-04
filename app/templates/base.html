@@ -200,13 +200,16 @@
 
         <!--Default code provided by teach's template, to be removed later-->
         <div class=default>
-
+        <br><br>
+        &nbsp;
             <!--renders flash messages, do not touch-->
             {% with messages = get_flashed_messages() %}
             {% if messages %}
             <ul>
                 {% for message in messages %}
+                <div class="alert alert-light" role="alert" style="width: fit-content;">
                 <li>{{ message }}</li>
+                </div>
                 {% endfor %}
             </ul>
             {% endif %}
