@@ -17,12 +17,6 @@ from datetime import date
 def home():
      return render_template('home.html', title='Home') #problem
 
-#Your Feed page
-@app.route("/viewroutine")
-def viewroutine():
-    routines= Routine.query.all()
-    return render_template('viewroutine.html', routines=routines)
-
 #Login page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -157,3 +151,10 @@ def delete_routine(routine_id):
     db.session.commit()
     flash('Your routine has been deleted!', 'success')
     return redirect(url_for('viewroutine'))
+
+#Your Feed page
+@app.route("/viewroutine", methods=['GET','POST'])
+@login_required
+def viewroutine():
+    routines= Routine.query.all()
+    return render_template('viewroutine.html', routines=routines)
