@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<style>
+
+    .search-result-page{
+        position: absolute; 
+        top: 15%;
+    }
+    
+    </style>
+
+    <div class="search-result-page">
+        <h1>{{ routine.title }}</h1>
+        <br><hr>
+        <p>{{ routine.description }}</p>
+        <br>
+        <a>Author: {{routine.author }}</a>
+
+    </div>
+
+{% endblock content %}

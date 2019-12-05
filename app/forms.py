@@ -91,3 +91,4 @@ class ResetPasswordForm(FlaskForm):
 #Search-NotWorking
 class searchForm(FlaskForm):
     routineName = StringField('Search routine', validators=[DataRequired()])
+    submit = SubmitField('Search')

@@ -209,13 +209,14 @@ def reset_token(token):
 
 #Search - NOT WORKING
 @app.route('/search', methods=['GET', 'POST'])
-@login_required
 def search():
     form = searchForm()
-    routines = Routine.query
+    routine= Routine.query.all()
     if form.validate_on_submit():
-        routines = Routine.query.filter(Routine.title.like('%' + form.routineName.data + '%'))
-     
-    routines = Routine.query.order_by(Routine.title).all()
-    return render_template('viewroutine.html', routines = routines, form=form)
-     
+        routine = Routine.query.filter_by(title=form.routineName.data).first()
+        return render_template('searchresults.html', routine=routine)
+    return render_template('search.html', routine=routine, form=form)
+
+@app.route('/search/searchresults', methods=['GET', 'POST'])
+def searchresults(routine):
+    return render_template('searchresults.html', routine=routine)
