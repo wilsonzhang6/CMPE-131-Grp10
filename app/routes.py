@@ -106,7 +106,7 @@ def createRoutine():
     form = CreateRoutineForm()
     if form.validate_on_submit(): #added this part
         #tasks = Routine(title=form.title.data, description=form.description.data, timestamp=date.today())
-        routine = Routine(title=form.title.data, description=form.description.data, author=current_user)
+        routine = Routine(title=form.title.data, description=form.description.data, timestamp=date.today(), author=current_user)
         db.session.add(routine)
         db.session.commit()
         flash('Your routine has been created!', 'success')
