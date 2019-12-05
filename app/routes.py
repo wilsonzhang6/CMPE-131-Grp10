@@ -131,6 +131,7 @@ def update_routine(routine_id):
     if form.validate_on_submit():
         routine.title = form.title.data
         routine.description = form.description.data
+        routine.timestamp=date.today()
         db.session.commit()
         flash('Your routine has been updated!', 'success')
         return redirect(url_for('routine', routine_id=routine.id))
