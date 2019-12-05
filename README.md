@@ -41,3 +41,13 @@ This feature is usable by all - CSS fuction
 
 Feature11: Homepage slide show
 Feature is seen by all. 
+
+Feature12: Update Routine
+This feature is only available for existing users
+They can update routines to their existing routines
+
+Feature13: Delete Routine
+Existing users can delete their routines
+
+Feature14: Search Routine
+Existing users can search routines that are already in their feed
