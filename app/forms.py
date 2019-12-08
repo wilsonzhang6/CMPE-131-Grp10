@@ -39,7 +39,7 @@ class CreateRoutineForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     #description = StringField('Description', validators=[DataRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])
-    submit = SubmitField('Routine')
+    submit = SubmitField('Create')
 
     def validate_maxtitle(self, title):
         if len(title) > 100:
