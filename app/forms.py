@@ -74,7 +74,7 @@ class UpdateAccountForm(FlaskForm):
 #Form to request reset password
 class RequestResetForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
-    submit = SubmitField('Request Password Reset')
+    submit = SubmitField('Request Reset')
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
@@ -86,4 +86,9 @@ class ResetPasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')
+
+#Search
+class searchForm(FlaskForm):
+    routineName = StringField('Search routine', validators=[DataRequired()])
+    submit = SubmitField('Search')
     

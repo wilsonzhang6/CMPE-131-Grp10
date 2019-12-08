@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<style>
+    .search-result-page{
+        position: absolute; 
+        top: 15%;
+    }
+    
+    </style>
+
+    <div class="search-result-page">
+        <p style="width: 400px; font-size: x-large; color: orange;">{{ routine.title }}</p>
+        <br>
+        <p style="width: 800px; font-size: x-large; color: skyblue;">{{ routine.description }}</p>
+        <br>
+
+        <p style="width: 800px; font-size: medium; color:yellowgreen;">Author: {{routine.author }}</p>
+        <p style="color: whitesmoke">{{ routine.timestamp.strftime('%m-%d-%Y') }}</p>
+
+
+    </div>
+
+{% endblock content %}

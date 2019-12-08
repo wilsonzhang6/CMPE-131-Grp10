@@ -2,7 +2,7 @@
 #routes URL
 from flask import render_template, flash, redirect, url_for, request, abort
 from app import app, db, mail
-from app.forms import LoginForm, RegistrationForm, CreateRoutineForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
+from app.forms import LoginForm, RegistrationForm, CreateRoutineForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm, searchForm
 from app.models import User, Routine
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
@@ -204,3 +204,19 @@ def reset_token(token):
         return redirect(url_for('login'))
 
     return render_template('reset_token.html', title='Reset_Password', form=form)
+
+#Search
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    form = searchForm()
+    routine= Routine.query.all()
+    if form.validate_on_submit():
+        routine = Routine.query.filter_by(title=form.routineName.data).first()
+        #routine = Routine.query.filter_by(Routine.title.like('%' + form.routineName.data + '%')).first() or Routine.query.filter(Routine.description.like('%' + form.routineName.data + '%')).first()
+        return render_template('searchresults.html', routine=routine)
+    return render_template('search.html', routine=routine, form=form)
+
+#search results
+@app.route('/search/searchresults', methods=['GET', 'POST'])
+def searchresults(routine):
+    return render_template('searchresults.html', routine=routine)

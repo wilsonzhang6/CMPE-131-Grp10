@@ -11,7 +11,6 @@
             left: 649px;
             top: 150px;
         }   
-
         /*this is the signup link*/
         #signup-link{
             position: absolute;
@@ -30,7 +29,24 @@
             text-transform: uppercase;
             color: #E0E0E0;
         }
-
+        /*forgot password link*/
+        #forgot-password-link{
+            position: absolute; 
+            width: 200px; 
+            height: 21px; 
+            left: 456px; 
+            top: 486px; 
+            font-family: "Oxygen", sans-serif; 
+            font-style: normal;
+            font-weight: bold;
+            font-size: 14px; 
+            line-height: 18px;
+            display: flex;
+            align-items: center;
+            text-decoration-line: underline;
+            text-transform: uppercase;
+            color: #E0E0E0;
+        }
         /*this is the username form area*/
         .login-username{
             position: absolute; 
@@ -41,7 +57,6 @@
             background: #FFFFFF; 
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 7px; 
-
             /*this is for the placeholder text*/
             font-family: "Oxygen", sans-serif;
             font-style: normal;
@@ -49,7 +64,6 @@
             font-size: 24px;
             line-height: 30px;
         }
-
         /*this is the passwword form area*/
         .login-password{
             position: absolute; 
@@ -60,7 +74,6 @@
             background: #FFFFFF; 
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 7px; 
-
             /*this is for the placeholder text*/
             font-family: "Oxygen", sans-serif;
             font-style: normal;
@@ -68,7 +81,6 @@
             font-size: 24px;
             line-height: 30px;
         }
-
         /*this is the login button*/
         .login-button{
             font-family: 'Oxygen', sans-serif;
@@ -104,12 +116,9 @@
         <p>
             {{ form.password(class_="login-password", placeholder=" PASSWORD", size=32) }}
         </p>
+        <!--p>{{ form.remember_me() }} {{ form.remember_me.label }}</p-->
         <p>{{ form.submit(class_="login-button") }}</p>
          <p><a id="signup-link" href="{{ url_for('register') }}">Don't have an account? </a></p>
-         <br>
-         <br>
-         <br>
-         <p><a href = "{{ url_for('reset_request')}}">Forgot Password?</a></p>
+         <p><a id="forgot-password-link" href = "{{ url_for('reset_request')}}">Forgot Password?</a></p>
     </form>
-    
 {% endblock %}

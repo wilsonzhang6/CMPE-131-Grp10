@@ -3,7 +3,7 @@
 
 
 <style>
-    .reset-request-page{
+    .search-page{
         position: absolute; 
     }
     /*This is the profile login picture*/
@@ -15,7 +15,7 @@
         top: 150px;
     }   
     /*this is the username form area*/
-    .reset-request-email{
+    .search-query{
         position: absolute; 
         width: 556px;
         height: 50px;
@@ -32,7 +32,7 @@
         line-height: 30px;
     }
     /*this is the login button*/
-    .request-button{
+    .search-button{
         font-family: 'Oxygen', sans-serif;
         position: absolute;
         text-transform: uppercase;
@@ -54,15 +54,12 @@
     
     </style>
 
-    <div class="reset-request-page">
-        <!--this is the account circle-->
-        <i class="material-icons security-icon">security</i>
-
+    <div class="search-page">
         <!--this is the log in form-->
         <form action="" method="post" novalidate>
             {{ form.hidden_tag() }}
-            <p>{{ form.email(class_="reset-request-email", placeholder=" ACCOUNT EMAIL", size=32) }}</p>
-            <p>{{ form.submit(class_="request-button") }}</p>
+            <p>{{ form.routineName(class_="search-query", placeholder=" SEARCH", size=32) }}</p>
+            <p>{{ form.submit(class_="search-button") }}</p>
         </form>
     </div>
 
