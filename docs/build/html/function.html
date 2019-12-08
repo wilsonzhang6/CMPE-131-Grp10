@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Function &#8212; CMPE-131-Grp10  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="How to install my app" href="installation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-app.forms">
+<span id="function"></span><h1>Function<a class="headerlink" href="#module-app.forms" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="app.forms.CreateRoutineForm">
+<em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">CreateRoutineForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.CreateRoutineForm" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="app.forms.CreateRoutineForm.description">
+<code class="sig-name descname">description</code><em class="property"> = &lt;UnboundField(TextAreaField, ('Description',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.CreateRoutineForm.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.forms.CreateRoutineForm.submit">
+<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Routine',), {})&gt;</em><a class="headerlink" href="#app.forms.CreateRoutineForm.submit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.forms.CreateRoutineForm.title">
+<code class="sig-name descname">title</code><em class="property"> = &lt;UnboundField(StringField, ('Title',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.CreateRoutineForm.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="app.forms.CreateRoutineForm.validate_maxdesc">
+<code class="sig-name descname">validate_maxdesc</code><span class="sig-paren">(</span><em class="sig-param">description</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.CreateRoutineForm.validate_maxdesc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="app.forms.CreateRoutineForm.validate_maxtitle">
+<code class="sig-name descname">validate_maxtitle</code><span class="sig-paren">(</span><em class="sig-param">title</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.CreateRoutineForm.validate_maxtitle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="app.forms.LoginForm">
+<em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">LoginForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.LoginForm" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="app.forms.LoginForm.password">
+<code class="sig-name descname">password</code><em class="property"> = &lt;UnboundField(PasswordField, ('Password',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.LoginForm.password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.forms.LoginForm.remember_me">
+<code class="sig-name descname">remember_me</code><em class="property"> = &lt;UnboundField(BooleanField, ('Remember Me',), {})&gt;</em><a class="headerlink" href="#app.forms.LoginForm.remember_me" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.forms.LoginForm.submit">
+<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Login',), {})&gt;</em><a class="headerlink" href="#app.forms.LoginForm.submit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.forms.LoginForm.username">
+<code class="sig-name descname">username</code><em class="property"> = &lt;UnboundField(StringField, ('Username',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.LoginForm.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="app.forms.RegistrationForm">
+<em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">RegistrationForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.RegistrationForm" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="app.forms.RegistrationForm.email">
+<code class="sig-name descname">email</code><em class="property"> = &lt;UnboundField(StringField, ('Email',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;, &lt;wtforms.validators.Email object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.RegistrationForm.email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.forms.RegistrationForm.password">
+<code class="sig-name descname">password</code><em class="property"> = &lt;UnboundField(PasswordField, ('Password',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.RegistrationForm.password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.forms.RegistrationForm.password2">
+<code class="sig-name descname">password2</code><em class="property"> = &lt;UnboundField(PasswordField, ('Repeat Password',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;, &lt;wtforms.validators.EqualTo object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.RegistrationForm.password2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.forms.RegistrationForm.submit">
+<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Register',), {})&gt;</em><a class="headerlink" href="#app.forms.RegistrationForm.submit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.forms.RegistrationForm.username">
+<code class="sig-name descname">username</code><em class="property"> = &lt;UnboundField(StringField, ('Username',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.RegistrationForm.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="app.forms.RegistrationForm.validate_email">
+<code class="sig-name descname">validate_email</code><span class="sig-paren">(</span><em class="sig-param">email</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.RegistrationForm.validate_email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="app.forms.RegistrationForm.validate_username">
+<code class="sig-name descname">validate_username</code><span class="sig-paren">(</span><em class="sig-param">username</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.RegistrationForm.validate_username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="app.forms.RequestResetForm">
+<em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">RequestResetForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.RequestResetForm" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="app.forms.RequestResetForm.email">
+<code class="sig-name descname">email</code><em class="property"> = &lt;UnboundField(StringField, ('Email',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;, &lt;wtforms.validators.Email object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.RequestResetForm.email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.forms.RequestResetForm.submit">
+<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Request Reset',), {})&gt;</em><a class="headerlink" href="#app.forms.RequestResetForm.submit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="app.forms.RequestResetForm.validate_email">
+<code class="sig-name descname">validate_email</code><span class="sig-paren">(</span><em class="sig-param">email</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.RequestResetForm.validate_email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="app.forms.ResetPasswordForm">
+<em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">ResetPasswordForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.ResetPasswordForm" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="app.forms.ResetPasswordForm.password">
+<code class="sig-name descname">password</code><em class="property"> = &lt;UnboundField(PasswordField, ('Password',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.ResetPasswordForm.password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.forms.ResetPasswordForm.password2">
+<code class="sig-name descname">password2</code><em class="property"> = &lt;UnboundField(PasswordField, ('Repeat Password',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;, &lt;wtforms.validators.EqualTo object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.ResetPasswordForm.password2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.forms.ResetPasswordForm.submit">
+<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Reset Password',), {})&gt;</em><a class="headerlink" href="#app.forms.ResetPasswordForm.submit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="app.forms.UpdateAccountForm">
+<em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">UpdateAccountForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.UpdateAccountForm" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="app.forms.UpdateAccountForm.email">
+<code class="sig-name descname">email</code><em class="property"> = &lt;UnboundField(StringField, ('Email',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;, &lt;wtforms.validators.Email object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.UpdateAccountForm.email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.forms.UpdateAccountForm.picture">
+<code class="sig-name descname">picture</code><em class="property"> = &lt;UnboundField(FileField, ('Profile Picture',), {'validators': [&lt;flask_wtf.file.FileAllowed object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.UpdateAccountForm.picture" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.forms.UpdateAccountForm.submit">
+<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Update Account',), {})&gt;</em><a class="headerlink" href="#app.forms.UpdateAccountForm.submit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.forms.UpdateAccountForm.username">
+<code class="sig-name descname">username</code><em class="property"> = &lt;UnboundField(StringField, ('Username',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.UpdateAccountForm.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="app.forms.UpdateAccountForm.validate_email">
+<code class="sig-name descname">validate_email</code><span class="sig-paren">(</span><em class="sig-param">email</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.UpdateAccountForm.validate_email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="app.forms.UpdateAccountForm.validate_username">
+<code class="sig-name descname">validate_username</code><span class="sig-paren">(</span><em class="sig-param">username</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.UpdateAccountForm.validate_username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="app.forms.searchForm">
+<em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">searchForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.searchForm" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="app.forms.searchForm.routineName">
+<code class="sig-name descname">routineName</code><em class="property"> = &lt;UnboundField(StringField, ('Search routine',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.searchForm.routineName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.forms.searchForm.submit">
+<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Search',), {})&gt;</em><a class="headerlink" href="#app.forms.searchForm.submit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">CMPE-131-Grp10</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">How to install my app</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Function</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="installation.html" title="previous chapter">How to install my app</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Visva.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/function.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
