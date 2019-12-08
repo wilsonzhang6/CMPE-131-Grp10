@@ -39,7 +39,7 @@ class CreateRoutineForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     #description = StringField('Description', validators=[DataRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])
-    submit = SubmitField('Routine')
+    submit = SubmitField('Create')
 
     def validate_maxtitle(self, title):
         if len(title) > 100:
@@ -71,6 +71,7 @@ class UpdateAccountForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first()
             if user is not None:
                 raise ValidationError('Please use a different email address.')
+<<<<<<< HEAD
 
 #Form to request reset password
 class RequestResetForm(FlaskForm):
@@ -92,3 +93,4 @@ class ResetPasswordForm(FlaskForm):
 class searchForm(FlaskForm):
     routineName = StringField('Search routine', validators=[DataRequired()])
     submit = SubmitField('Search')
+>>>>>>> e79084705a329a700826d2a34f48d55d65b6e76a
