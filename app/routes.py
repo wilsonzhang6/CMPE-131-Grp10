@@ -217,7 +217,8 @@ def search():
     form = searchForm()
     routine= Routine.query.all()
     if form.validate_on_submit():
-        routine = Routine.query.filter_by(title=form.routineName.data).first()
+        #routine = Routine.query.filter_by(title=form.routineName.data).first()
+        routine = Routine.query.filter(Routine.title.like('%' + form.routineName.data + '%')).first() or Routine.query.filter(Routine.description.like('%' + form.routineName.data + '%')).first()
         return render_template('searchresults.html', routine=routine)
     return render_template('search.html', routine=routine, form=form)
 
