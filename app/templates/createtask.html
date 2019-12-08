@@ -7,6 +7,7 @@
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">{{ legend }}</legend>
             <div class="form-group">
+                <p style="width: 400px; font-size: x-large; color: skyblue;">
                 {{ form.title.label(class="form-control-label") }}
                 {% if form.title.errors %}
                     {{ form.title(class="form-control form-control-lg is-invalid") }}
@@ -18,8 +19,10 @@
                 {% else %}
                     {{ form.title(class="form-control form-control-lg") }}
                 {% endif %}
+                </p>
             </div>
             <div class="form-group">
+                <p style="width: 800px; font-size: x-large; color: skyblue;">
                 {{ form.description.label(class="form-control-label") }}
                 {% if form.description.errors %}
                     {{ form.description(class="form-control form-control-lg is-invalid") }}
@@ -31,6 +34,7 @@
                 {% else %}
                     {{ form.description(class="form-control form-control-lg") }}
                 {% endif %}
+                </p>
             </div>
         </fieldset>
         <div class="form-group">

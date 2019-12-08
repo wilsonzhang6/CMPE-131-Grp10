@@ -2,18 +2,19 @@
 {% extends "base.html" %}
 
 {% block content%}
-
-
   {% for routine in routines %}
     {% if routine.author == current_user %}
+    <br>
         <article class="media content-section">
           <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="#">{{ routine.author.username }}</a>
-              <h2 class="text-muted">{{ routine.timestamp.strftime('%Y-%m-%d') }}</h2>
-            </div>
-            <h2><a class="article-title" href="{{ url_for('routine', routine_id=routine.id) }}">{{ routine.title }}</a></h2>
-            <p class="article-content">{{ routine.description }}</p>
+              <p style="padding-right: 5px; color: yellowgreen;">
+                <!--<h1>{{ routine.author.username }}</h1> -->
+              </p>
+            </div>         
+            <h2 style="color: orange;"><a class="article-title" href="{{ url_for('routine', routine_id=routine.id) }}">{{ routine.title }}</a></h2>
+            <h3 class="article-content" style="color: yellowgreen;">{{ routine.description }}</h3>
+            <h4 style="color: whitesmoke">{{ routine.timestamp.strftime('%m-%d-%Y') }}</h4>
           </div>
         </article>
     {% endif %}

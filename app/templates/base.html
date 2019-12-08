@@ -27,7 +27,7 @@
 
         /* This is the logo text itself*/
         #App-Logo{
-            position: absolute;
+            position: fixed;
             top: 10px;
             z-index: 3;
             font-family: "Oxegyn", sans-serif;
@@ -44,9 +44,9 @@
 
         /* This is the green rectangle for the banner */
         .banner{
-            position: absolute;
+            position: fixed;
             width: 100%; 
-            height: 96px;
+            height: 90px;
             left: 0px;
             top: 0px;
             z-index: 2;
@@ -60,9 +60,9 @@
         /* This was the default banner, also moving all page's content down 
         a little bit for testing - to be removed later*/
         .default{
+            /*position: fixed;*/
             font-family: "Oxegyn", sans-serif;
             font-style: normal;
-            position: fixed;
             top: 11%; 
         }
 
@@ -75,8 +75,8 @@
 
         /*all below is for side navigation bar*/
         .sideNavBarPanelC {
-            height: 100%;
             position: fixed;
+            height: 100%;
             z-index: 2;
             width: 0;
             top: 0;
@@ -105,10 +105,11 @@
         }
 
     /*All below are for the hamburger menu button*/
+
         .hamburger-menu{
+            position: fixed;
             font-size: 45px;
             text-align: center;
-            position: absolute;
             text-decoration: none;
             color: #0F0F0F;
             width: 55px;
@@ -130,9 +131,9 @@
             color: #0F0F0F;
             z-index: 0;
 
+            position: fixed;
             font-size: 45px;
             text-align: center;
-            position: absolute;
             width: 55px; 
             height: 53px;
             left: 20px;
@@ -149,23 +150,25 @@
     <body>
 
         <!--this is the hamburger menu icon-->
-        <a id="hamburger-menu-open" class="hamburger-menu" href="#" onclick="openSideNavBar()">&#9776;</a>
-        <a id="hamburger-menu-close" class="closebtn" href="javascript:void(0)" onclick="closeSideNavBar()">&#9776;</a>
-        <div id="sideNavBarPanel" class="sideNavBarPanelC">
-            <br>
-            <br>
-            <br>
-            <br>
-            <div id="sideNavLinks">
-                {% if current_user.is_anonymous %}
-                <a href="{{ url_for('login') }}">Login</a>
-                {% else %}
-                <!--<a href="{{url_for('createRoutine')}}">Your Feed</a><br>-->
-                <a href="{{url_for('viewroutine') }}"">Your Feed</a><br>
-                <a href="{{ url_for('createRoutine') }}">New Routine</a><br>
-                <a href="{{ url_for('index') }}">Your Account</a><br>
-                <a href="{{ url_for('logout') }}">Logout</a>
-                {% endif %}
+        <div id="hamburger-menu-component">
+            <a id="hamburger-menu-open" class="hamburger-menu" href="#" onclick="openSideNavBar()">&#9776;</a>
+            <a id="hamburger-menu-close" class="closebtn" href="javascript:void(0)" onclick="closeSideNavBar()">&#9776;</a>
+            <div id="sideNavBarPanel" class="sideNavBarPanelC">
+                <br>
+                <br>
+                <br>
+                <br>
+                <div id="sideNavLinks">
+                    {% if current_user.is_anonymous %}
+                    <a href="{{ url_for('login') }}">Login</a>
+                    {% else %}
+                    <a href="{{ url_for('search')}}">Search</a><br>
+                    <a href="{{ url_for('viewroutine') }}"">Your Feed</a><br>
+                    <a href="{{ url_for('createRoutine') }}">New Routine</a><br>
+                    <a href="{{ url_for('index') }}">Your Account</a><br>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
 
@@ -197,13 +200,16 @@
 
         <!--Default code provided by teach's template, to be removed later-->
         <div class=default>
-
+        <br><br>
+        &nbsp;
             <!--renders flash messages, do not touch-->
             {% with messages = get_flashed_messages() %}
             {% if messages %}
             <ul>
                 {% for message in messages %}
+                <div class="alert alert-light" role="alert" style="width: fit-content;">
                 <li>{{ message }}</li>
+                </div>
                 {% endfor %}
             </ul>
             {% endif %}

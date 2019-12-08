@@ -3,20 +3,23 @@
 
 {% block content %}
 <style>
-   #account-image{
+    .account-top-info-component{
         position: absolute; 
         left: 80px; 
         top: 50px; 
+    }
+
+   #account-image{
+        position: absolute;
         height: 75px; 
         width: 75px
     }
 
     .account-top-info{
-        left: 180px; 
         position: absolute;
+        left: 100px; 
         width: 413px; 
-        height: 85px; 
-        top: 50px; 
+        top: 10px; 
 
         text-transform: uppercase;
         color: #C8C7C7;
@@ -31,8 +34,8 @@
     }
 
     #line-break-text{
-        left: 40px; 
         position: absolute;
+        left: 40px; 
         top: 155px; 
         width: 1297px; 
 
@@ -49,70 +52,83 @@
     }
 
     #line-break{
-        left: 20px; 
         position: absolute;
+        left: 20px; 
         top: 160px; 
-
         width: 1370px; 
         border: 1px solid #C8C7C7;
         transform: matrix(1, 0, 0, 1, 0, 0);
     }
 
     .update-form-area{
-        left: 120px; 
         position: absolute;
+        left: 120px; 
         top: 190px; 
 
         font-family: "Oxegyn", sans-serif;
         font-style: normal;
     }
 
+    /*css code for the general page area - currently used for positioning relative to banner*/
+    .account-area-component{
+        position: absolute; 
+        top: 100px; 
+    }
+
 </style>
 
 <!-- current_user is a property of flask-login -->
+<div class="account-area-component">
 
-<!--rounded-circle class part of boostrap-->
-<img id ="account-image" class="rounded-circle" src="{{ image_file }}">
-<div class="account-top-info">
-    <a id="display-username">{{ current_user.username }}</a>
-</div>
+    <!--rounded-circle class part of boostrap-->
+    <div class="account-top-info-component">
+        <img id ="account-image" class="rounded-circle" src="{{ image_file }}">
+        <div class="account-top-info">
+            <a id="display-username">{{ current_user.username }}</a>
+            <br>
+            <a id="display-email">{{ current_user.email }}</a>
+        </div>
+    </div>
 
-<!--Posts-->
-{% for post in posts %}
-<div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
-{% endfor %}
+    <!--Posts-->
+    {% for post in posts %}
+    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}
 
-    <!--Line break-->
-    <a id="line-break-text">Update Account Information</a>
-    <hr id="line-break">
+        <!--Line break-->
+        <a id="line-break-text">Update Account Information</a>
+        <hr id="line-break">
 
-<!--The form to update account-->
-<div class="update-form-area">
-    <form action="" method="post" enctype="multipart/form-data">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username(class_= "update-account-username", size=32, placeholder=" USERNAME") }}<br>
-            {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.email(class_="update-account-email", size=64, placeholder=" EMAIL") }}<br>
-            {% for error in form.email.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.picture(class_="form-control-file") }}<br>
-            {% if form.picture.errors %}
-                {% for error in form.picture.errors %}
-                <span style="color: red;">[{{ error }}]</span><br>
+    <!--The form to update account-->
+    <div class="update-form-area">
+        <form action="" method="post" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.username(class_= "update-account-username", size=32, placeholder=" USERNAME") }}<br>
+                {% for error in form.username.errors %}
+                <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
-            {% endif %}
-        </p>
-        <p>{{ form.submit(class_="update-account-button") }}</p>
-    </form>
+            </p>
+            <p>
+                {{ form.email(class_="update-account-email", size=64, placeholder=" EMAIL") }}<br>
+                {% for error in form.email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.picture(class_="form-control-file") }}<br>
+                {% if form.picture.errors %}
+                    {% for error in form.picture.errors %}
+                    <span style="color: red;">[{{ error }}]</span><br>
+                    {% endfor %}
+                {% endif %}
+            </p>
+            <p>{{ form.submit(class_="update-account-button") }}</p>
+        </form>
+    </div>
+
 </div>
+
 
 {% endblock %}:w
 

@@ -5,7 +5,7 @@ from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextField, TextAreaField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
-from app.models import User, Routine
+from .models import User, Routine
 import calendar
 
 #Form for logging into system
@@ -71,3 +71,26 @@ class UpdateAccountForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first()
             if user is not None:
                 raise ValidationError('Please use a different email address.')
+<<<<<<< HEAD
+
+#Form to request reset password
+class RequestResetForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Reset')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError('No such account with said email exists')
+
+#Form to reset password
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()])
+    password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Reset Password')
+
+#Search-NotWorking
+class searchForm(FlaskForm):
+    routineName = StringField('Search routine', validators=[DataRequired()])
+    submit = SubmitField('Search')
+>>>>>>> e79084705a329a700826d2a34f48d55d65b6e76a

@@ -32,3 +32,22 @@ This feature is only available to existing user and they can update their userna
 
 Feature8: Upload Profile Picture
 This feature is only available to existing user and they can upload/update their profile picture
+
+Feature9: Change Password
+This feature is usable by all however only applies to existing users. 
+
+Feature10: Hamburger side panel menu
+This feature is usable by all - CSS fuction
+
+Feature11: Homepage slide show
+Feature is seen by all. 
+
+Feature12: Update Routine
+This feature is only available for existing users
+They can update routines to their existing routines
+
+Feature13: Delete Routine
+Existing users can delete their routines
+
+Feature14: Search Routine
+Existing users can search routines that are already in their feed
