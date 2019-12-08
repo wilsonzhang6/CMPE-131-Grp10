@@ -1,14 +1,17 @@
 #provided by teach
 #routes URL
 from flask import render_template, flash, redirect, url_for, request, abort
-from app import app, db
-from app.forms import LoginForm, RegistrationForm, CreateRoutineForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm, searchForm
-from app.models import User, Routine
+from . import db
+from .forms import LoginForm, RegistrationForm, CreateRoutineForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm, searchForm
+from .models import User, Routine
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
+from werkzeug import url_encode
 import secrets, os
 from PIL import Image
 from datetime import date
+from flask import current_app as app
+from . import login_manager
 
 @app.route('/')
 

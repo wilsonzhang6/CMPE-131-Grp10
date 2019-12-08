@@ -1,10 +1,12 @@
 #provided by teach
 #this is the database and database classes
 from datetime import datetime
-from app import db #import from upper directory level
-from app import login #import from upper directory level
+from . import db #import from upper directory level
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from . import login_manager
+#from app import login #import from upper directory level
+
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True) #integer that is incremented when a new addition is added
@@ -38,10 +40,9 @@ class Routine(db.Model):
     def __repr__(self):
         return '<Routine: {} {} {}>'.format(self.title, self.description, self.timestamp)
 
-@login.user_loader
+@login_manager.user_loader
 def load_user(id):
     return User.query.get(int(id))
-
 
 
 '''
