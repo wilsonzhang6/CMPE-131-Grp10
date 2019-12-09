@@ -33,7 +33,7 @@ def home():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('viewroutine'))
 
     form = LoginForm()
     if form.validate_on_submit():
@@ -46,7 +46,7 @@ def login():
         # return to page before user got asked to login
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('index')
+            next_page = url_for('viewroutine')
 
         return redirect(next_page)
     
@@ -64,13 +64,13 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('home'))
 
 #Register page
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('viewroutine'))
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data)
@@ -120,7 +120,7 @@ def index():
         current_user.email = form.email.data #replace the current user's email with the email that was inputted by form
         db.session.commit() #commit all changes into the database
         flash('your account information has been updated!', 'success') #message flash
-        return redirect(url_for('index')) #redirect user back to the index page
+        return redirect(url_for('viewroutine')) #redirect user back to the index page
     elif request.method == 'GET': #When the page requests a GET (such as when the page loads in the browser)
         form.username.data = current_user.username #pre-fill the form field with the user's current username
         form.email.data = current_user.email #pre-fill the form field with the user's current email
@@ -247,7 +247,7 @@ def send_reset_email(user):
 @app.route('/reset_password', methods=['GET', 'POST'])
 def reset_request():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('viewroutine'))
 
     form = RequestResetForm()
 
@@ -270,7 +270,7 @@ def reset_request():
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_token(token):
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('viewroutine'))
     user = User.verify_reset_token(token)
 
     if user is None:
