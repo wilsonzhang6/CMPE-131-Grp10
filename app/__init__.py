@@ -1,4 +1,4 @@
-#provided by teach 
+#provided by teach
 #database functions, initializes flask objects
 import os
 
