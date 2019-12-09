@@ -2,23 +2,33 @@
 {% extends "base.html" %}
 
 {% block content%}
-  {% for routine in routines %}
-    {% if routine.author == current_user %}
-    <br>
-        <article class="media content-section">
-          <div class="media-body">
-            <div class="article-metadata">
-              <p style="padding-right: 5px; color: yellowgreen;">
-                <!--<h1>{{ routine.author.username }}</h1> -->
-              </p>
-            </div>         
-            <h2 style="color: orange;"><a class="article-title" href="{{ url_for('routine', routine_id=routine.id) }}">{{ routine.title }}</a></h2>
-            <h3 class="article-content" style="color: yellowgreen;">{{ routine.description }}</h3>
-            <h4 style="color: whitesmoke">{{ routine.timestamp.strftime('%m-%d-%Y') }}</h4>
-          </div>
-        </article>
-    {% endif %}
-  {% endfor %}
+
+<!--Code for search bar| place one at each page except base-->
+<div class="search-area">
+    <!--this is the search form-->
+    <form action="" method="post" novalidate>
+        {{ searchBar.hidden_tag() }}
+        <p>{{ searchBar.routineName(class_="search-bar", placeholder=" SEARCH", size=32) }}</p>
+    </form>
+</div>
+
+{% for routine in routines %}
+  {% if routine.author == current_user %}
+  <br>
+      <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <p style="padding-right: 5px; color: yellowgreen;">
+              <!--<h1>{{ routine.author.username }}</h1> -->
+            </p>
+          </div>         
+          <h2 style="color: orange;"><a class="article-title" href="{{ url_for('routine', routine_id=routine.id) }}">{{ routine.title }}</a></h2>
+          <h3 class="article-content" style="color: yellowgreen;">{{ routine.description }}</h3>
+          <h4 style="color: whitesmoke">{{ routine.timestamp.strftime('%m-%d-%Y') }}</h4>
+        </div>
+      </article>
+  {% endif %}
+{% endfor %}
 
 
 {% endblock content %}

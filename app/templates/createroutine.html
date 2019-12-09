@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<!--Code for search bar| place one at each page except base-->
+<div class="search-area">
+    <!--this is the search form-->
+    <form action="" method="post" novalidate>
+        {{ searchBar.hidden_tag() }}
+        <p>{{ searchBar.routineName(class_="search-bar", placeholder=" SEARCH", size=32) }}</p>
+    </form>
+</div>
+
 <div class="content-section">
     <form method="POST" action="">
         {{ form.hidden_tag() }}

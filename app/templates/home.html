@@ -3,12 +3,6 @@
 {% block content %}
 
 <style>
-    /*
-    #background-image{
-        background-size: cover; 
-        background-attachment: fixed;
-    }*/
-
     .crossfade > figure {
         position: absolute;
         animation: imageAnimation 12s linear infinite 0s; 
@@ -61,15 +55,22 @@
     }
 
 </style>
-<body id="background-image">
 
-    <div class="crossfade">
-        <figure></figure>
-        <figure></figure>
-        <figure></figure>
-    </div>
+<!--Code for search bar| place one at each page except base-->
+<div class="search-area">
+    <!--this is the search form-->
+    <form action="" method="post" novalidate>
+        {{ searchBar.hidden_tag() }}
+        <p>{{ searchBar.routineName(class_="search-bar", placeholder=" SEARCH", size=32) }}</p>
+    </form>
+</div>
 
+<!--For background slideshow-->
+<div class="crossfade">
+    <figure></figure>
+    <figure></figure>
+    <figure></figure>
+</div>
 
-</body>
 
 {% endblock %}
