@@ -15,12 +15,6 @@ def test_get_login_page(client):
     assert b'username' in response.data
     assert b'password' in response.data
 '''
-def test_get_login_page(client):
-    response = client.get('/login')
-    assert response.status_code == 200
-    assert b'username' in response.data
-    assert b'password' in response.data
-
 def test_add_user_to_db(db):
     user1 = User(username='john', email='test@test.com', password_hash='test')
     db.session.add(user1)
