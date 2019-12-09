@@ -5,6 +5,8 @@ from . import db #import from upper directory level
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+from run import app
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 #from app import login #import from upper directory level
 
 
@@ -26,6 +28,19 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User {} {}>'.format(self.username, self.email)    
 
+    #For password reset
+    def get_reset_token(self, expire_seconds=900):
+        s = Serializer(app.config['SECRET_KEY'], expire_seconds)
+        return s.dumps({'user_id': self.id}).decode('utf-8')
+
+    def verify_reset_token(token):
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            user_id = s.loads(token)['user_id']
+        except:
+            return None
+        return User.query.get(user_id)
+
 #This is modified to be a routine/post
 class Routine(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -43,9 +58,3 @@ class Routine(db.Model):
 @login_manager.user_loader
 def load_user(id):
     return User.query.get(int(id))
-
-
-'''
-    def __repr__(self):
-        return f"Routine('{self.title}', '{self.description}', '{self.timestamp}')"
-'''
