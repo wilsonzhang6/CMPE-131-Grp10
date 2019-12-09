@@ -1,12 +1,11 @@
 travis-ci
 https://travis-ci.org/wilsonzhang6/CMPE-131-Grp10.svg?branch=master
 
+Use version 0.9.0 of flask-mail; 0.9.1 will not work
 
-Instructions on how to run your app.
-on the terminal, we type the following for Python version 3.8:
+To start: 
 python3 -m flask run
 
-b.    Describes all 8 features and how to verify that they were implemented.
 Feature1: Login
 Existing user can login with username and password
 
