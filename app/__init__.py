@@ -45,22 +45,3 @@ def create_app(test_config=None):
         db.create_all()
 
     return app
-
-
-
-'''
-#flask object
-app = Flask(__name__)
-app.config.from_object(Config)
-
-#database
-db = SQLAlchemy(app) #instantiation
-
-#login
-login = LoginManager(app)
-    # right side is the function that's called to login users
-login.login_view = 'login'
-
-#import models (tables) for database
-from app import routes, models
-'''

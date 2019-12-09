@@ -119,7 +119,7 @@ def createRoutine():
    # routine = Routine.query.filter_by(title=title.form.data).first()
     #title = Routine(title=form.title.data)
     #desc = Routine(description=form.description.data)
-    return render_template('createtask.html', title='Create Routine', form = form, legend='New Routine')
+    return render_template('createroutine.html', title='Create Routine', form = form, legend='New Routine')
 
 @app.route("/routine/<int:routine_id>")
 def routine(routine_id):
@@ -143,8 +143,7 @@ def update_routine(routine_id):
     elif request.method == 'GET':
         form.title.data = routine.title
         form.description.data = routine.description
-    return render_template('createtask.html', title='Update Routine',
-                           form=form, legend='Update Routine')
+    return render_template('createroutine.html', title='Update Routine', form=form, legend='Update Routine')
 
 
 @app.route("/routine/<int:routine_id>/delete", methods=['POST'])
