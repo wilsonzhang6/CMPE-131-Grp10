@@ -8,18 +8,26 @@
         top: 15%;
     }
     
-    </style>
+</style>
 
-    <div class="search-result-page">
-        <p style="width: 400px; font-size: x-large; color: orange;">{{ routine.title }}</p>
-        <br>
-        <p style="width: 800px; font-size: x-large; color: skyblue;">{{ routine.description }}</p>
-        <br>
+<div class="search-area">
+    <!--this is the search form-->
+    <form action="" method="post" novalidate>
+        {{ searchBar.hidden_tag() }}
+        <p>{{ searchBar.routineName(class_="search-bar", placeholder=" SEARCH", size=32) }}</p>
+    </form>
+</div>
 
-        <p style="width: 800px; font-size: medium; color:yellowgreen;">Author: {{routine.author }}</p>
-        <p style="color: whitesmoke">{{ routine.timestamp.strftime('%m-%d-%Y') }}</p>
+<div class="search-result-page">
+    <p style="width: 400px; font-size: x-large; color: orange;">{{ routine.title }}</p>
+    <br>
+    <p style="width: 800px; font-size: x-large; color: skyblue;">{{ routine.description }}</p>
+    <br>
+
+    <p style="width: 800px; font-size: medium; color:yellowgreen;">Author: {{routine.author }}</p>
+    <p style="color: whitesmoke">{{ routine.timestamp.strftime('%m-%d-%Y') }}</p>
 
 
-    </div>
+</div>
 
 {% endblock content %}

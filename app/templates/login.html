@@ -104,6 +104,14 @@
     
     </style>
 
+    <div class="search-area">
+        <!--this is the search form-->
+        <form action="" method="post" novalidate>
+            {{ searchBar.hidden_tag() }}
+            <p>{{ searchBar.routineName(class_="search-bar", placeholder=" SEARCH", size=32) }}</p>
+        </form>
+    </div>
+
     <!--this is the account circle-->
     <i class="material-icons anonymous-profile">account_circle</i>
 

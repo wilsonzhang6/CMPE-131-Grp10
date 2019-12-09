@@ -8,6 +8,14 @@
   }
 </style>
 
+<div class="search-area">
+    <!--this is the search form-->
+    <form action="" method="post" novalidate>
+        {{ searchBar.hidden_tag() }}
+        <p>{{ searchBar.routineName(class_="search-bar", placeholder=" SEARCH", size=32) }}</p>
+    </form>
+</div>
+
 <div class="view-routine-page">
     {% for routine in routines %}
     {% if routine.author == current_user %}

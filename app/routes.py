@@ -11,18 +11,26 @@ from PIL import Image
 from datetime import date
 from flask_mail import Message
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 
 #Home page
-@app.route('/home') 
+@app.route('/home', methods=['GET', 'POST']) 
 def home():
-     return render_template('home.html', title='Home') #problem
+    #Code for search bar
+    searchBar = searchForm(prefix="searchBar")
+    routine= Routine.query.all()
+    if searchBar.validate_on_submit():
+        routine = Routine.query.filter_by(title=searchBar.routineName.data).first()
+        #routine = Routine.query.filter_by(Routine.title.like('%' + form.routineName.data + '%')).first() or Routine.query.filter(Routine.description.like('%' + form.routineName.data + '%')).first()
+        return render_template('searchresults.html', routine=routine, searchBar=searchBar)
+    #End code for search bar
+    return render_template('home.html', title='Home', routine=routine, searchBar=searchBar)
 
 #Login page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('viewroutine'))
 
     form = LoginForm()
     if form.validate_on_submit():
@@ -35,22 +43,32 @@ def login():
         # return to page before user got asked to login
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('index')
+            next_page = url_for('viewroutine')
 
         return redirect(next_page)
-    return render_template('login.html', title='Sign in', form=form)
+
+    #Code for search bar
+    searchBar = searchForm(prefix="searchBar")
+    routine= Routine.query.all()
+    if searchBar.validate_on_submit():
+        routine = Routine.query.filter_by(title=searchBar.routineName.data).first()
+        #routine = Routine.query.filter_by(Routine.title.like('%' + form.routineName.data + '%')).first() or Routine.query.filter(Routine.description.like('%' + form.routineName.data + '%')).first()
+        return render_template('searchresults.html', routine=routine, searchBar=searchBar)
+    #End code for search bar
+
+    return render_template('login.html', title='Sign in', form=form, searchBar=searchBar)
 
 #Logout function
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('home'))
 
 #Register page
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('viewroutine'))
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data)
@@ -59,7 +77,16 @@ def register():
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form)
+
+    #Code for search bar
+    searchBar = searchForm(prefix="searchBar")
+    routine= Routine.query.all()
+    if searchBar.validate_on_submit():
+        routine = Routine.query.filter_by(title=searchBar.routineName.data).first()
+        #routine = Routine.query.filter_by(Routine.title.like('%' + form.routineName.data + '%')).first() or Routine.query.filter(Routine.description.like('%' + form.routineName.data + '%')).first()
+        return render_template('searchresults.html', routine=routine, searchBar=searchBar)
+    #End code for search bar
+    return render_template('register.html', title='Register', form=form, searchBar=searchBar)
 
 #To be used to save a profile picture -> to update a user's profile picture
 #Currently used by index() function
@@ -96,7 +123,16 @@ def index():
         form.username.data = current_user.username #pre-fill the form field with the user's current username
         form.email.data = current_user.email #pre-fill the form field with the user's current email
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
-    return render_template('index.html', title='User Home', image_file=image_file, form=form)
+
+    #Code for search bar
+    searchBar = searchForm(prefix="searchBar")
+    routine= Routine.query.all()
+    if searchBar.validate_on_submit():
+        routine = Routine.query.filter_by(title=searchBar.routineName.data).first()
+        #routine = Routine.query.filter_by(Routine.title.like('%' + form.routineName.data + '%')).first() or Routine.query.filter(Routine.description.like('%' + form.routineName.data + '%')).first()
+        return render_template('searchresults.html', routine=routine, searchBar=searchBar)
+    #End code for search bar
+    return render_template('index.html', title='User Home', image_file=image_file, form=form, searchBar=searchBar)
 
 #Routine creation
 @app.route('/routine/new', methods=['GET', 'POST'])
@@ -110,15 +146,30 @@ def createRoutine():
         db.session.commit()
         flash('Your routine has been created!', 'success')
         return redirect(url_for('viewroutine'))
-   # routine = Routine.query.filter_by(title=title.form.data).first()
-    #title = Routine(title=form.title.data)
-    #desc = Routine(description=form.description.data)
-    return render_template('createtask.html', title='Create Routine', form = form, legend='New Routine')
+
+    #Code for search bar
+    searchBar = searchForm(prefix="searchBar")
+    routine= Routine.query.all()
+    if searchBar.validate_on_submit():
+        routine = Routine.query.filter_by(title=searchBar.routineName.data).first()
+        #routine = Routine.query.filter_by(Routine.title.like('%' + form.routineName.data + '%')).first() or Routine.query.filter(Routine.description.like('%' + form.routineName.data + '%')).first()
+        return render_template('searchresults.html', routine=routine, searchBar=searchBar)
+    #End code for search bar
+
+    return render_template('createroutine.html', title='Create Routine', form = form, searchBar=searchBar, legend='New Routine')
 
 @app.route("/routine/<int:routine_id>")
 def routine(routine_id):
     routine= Routine.query.get_or_404(routine_id)
-    return render_template('routine.html', title=routine.title,routine=routine)
+
+    #Code for search bar
+    searchBar = searchForm(prefix="searchBar")
+    if searchBar.validate_on_submit():
+        routine = Routine.query.filter_by(title=searchBar.routineName.data).first()
+        #routine = Routine.query.filter_by(Routine.title.like('%' + form.routineName.data + '%')).first() or Routine.query.filter(Routine.description.like('%' + form.routineName.data + '%')).first()
+        return render_template('searchresults.html', routine=routine, searchBar=searchBar)
+    #End code for search bar
+    return render_template('routine.html', title=routine.title,routine=routine, searchBar=searchBar)
 
 @app.route("/routine/<int:routine_id>/update", methods=['GET', 'POST'])
 @login_required
@@ -136,7 +187,16 @@ def update_routine(routine_id):
     elif request.method == 'GET':
         form.title.data = routine.title
         form.description.data = routine.description
-    return render_template('createtask.html', title='Update Routine', form=form, legend='Update Routine')
+
+    #Code for search bar
+    searchBar = searchForm(prefix="searchBar")
+    if searchBar.validate_on_submit():
+        routine = Routine.query.filter_by(title=searchBar.routineName.data).first()
+        #routine = Routine.query.filter_by(Routine.title.like('%' + form.routineName.data + '%')).first() or Routine.query.filter(Routine.description.like('%' + form.routineName.data + '%')).first()
+        return render_template('searchresults.html', routine=routine, searchBar=searchBar)
+    #End code for search bar
+
+    return render_template('createroutine.html', title='Update Routine', form=form, searchBar=searchBar, legend='Update Routine')
 
 
 @app.route("/routine/<int:routine_id>/delete", methods=['POST'])
@@ -154,9 +214,16 @@ def delete_routine(routine_id):
 @app.route("/viewroutine", methods=['GET','POST'])
 @login_required
 def viewroutine():
-    routines= Routine.query.all()
-    return render_template('viewroutine.html', routines=routines)
-
+    #Code for search bar
+    searchBar = searchForm(prefix="searchBar")
+    routine= Routine.query.all()
+    if searchBar.validate_on_submit():
+        routine = Routine.query.filter_by(title=searchBar.routineName.data).first()
+        #routine = Routine.query.filter_by(Routine.title.like('%' + form.routineName.data + '%')).first() or Routine.query.filter(Routine.description.like('%' + form.routineName.data + '%')).first()
+        return render_template('searchresults.html', routine=routine, searchBar=searchBar)
+    #End code for search bar
+    
+    return render_template('viewroutine.html', routines=routine, searchBar=searchBar)
 
 def send_reset_email(user):
     token = user.get_reset_token()
@@ -172,11 +239,10 @@ def send_reset_email(user):
     '''
     mail.send(msg)
 
-
 @app.route('/reset_password', methods=['GET', 'POST'])
 def reset_request():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('home'))
 
     form = RequestResetForm()
 
@@ -190,7 +256,7 @@ def reset_request():
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_token(token):
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('home'))
     user = User.verify_reset_token(token)
 
     if user is None:
@@ -205,18 +271,15 @@ def reset_token(token):
 
     return render_template('reset_token.html', title='Reset_Password', form=form)
 
-#Search
-@app.route('/search', methods=['GET', 'POST'])
-def search():
-    form = searchForm()
-    routine= Routine.query.all()
-    if form.validate_on_submit():
-        routine = Routine.query.filter_by(title=form.routineName.data).first()
-        #routine = Routine.query.filter_by(Routine.title.like('%' + form.routineName.data + '%')).first() or Routine.query.filter(Routine.description.like('%' + form.routineName.data + '%')).first()
-        return render_template('searchresults.html', routine=routine)
-    return render_template('search.html', routine=routine, form=form)
-
 #search results
-@app.route('/search/searchresults', methods=['GET', 'POST'])
+@app.route('/searchresults', methods=['GET', 'POST'])
 def searchresults(routine):
-    return render_template('searchresults.html', routine=routine)
+    #Code for search bar
+    searchBar = searchForm(prefix="searchBar")
+    routine= Routine.query.all()
+    if searchBar.validate_on_submit():
+        routine = Routine.query.filter_by(title=searchBar.routineName.data).first()
+        #routine = Routine.query.filter_by(Routine.title.like('%' + form.routineName.data + '%')).first() or Routine.query.filter(Routine.description.like('%' + form.routineName.data + '%')).first()
+        return render_template('searchresults.html', routine=routine, searchBar=searchBar)
+    #End code for search bar
+    return render_template('searchresults.html', routine=routine, searchBar=searchBar)
