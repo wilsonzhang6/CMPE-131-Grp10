@@ -20,12 +20,25 @@ def test_add_user_to_db(db):
     db.session.commit()
     assert len(User.query.all()) == 1
 
+
 def test_add_routine_to_db(db):
     user1 = User.query.filter_by(username='john').first()
     routine_1 = Routine(title='test title', description='test description & content', user_id=user1.id)
     db.session.add(routine_1)
     db.session.commit()
     assert len(Routine.query.all()) > 0
+
+def test_remove_routine_from_db(db):
+    routine_1 = Routine.query.filter_by(title='test title').first()
+    db.session.delete(routine_1)
+    db.session.commit()
+    assert len(Routine.query.all()) == 0
+
+def test_remove_user_from_db(db):
+    user1 = User.query.filter_by(username='john').first()
+    db.session.delete(user1)
+    db.session.commit()
+    assert len(Routine.query.all()) == 0
 
 def test_valid_register(client, db):
     response = client.post(url_for('register'), data=dict(username='testing', email='testing@testing.com', 
