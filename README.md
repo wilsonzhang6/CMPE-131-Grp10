@@ -1,6 +1,6 @@
-## Link to our app:
+###Link to our app:
 
-`<https://taskroute.herokuapp.com>`_
+https://taskroute.herokuapp.com
 
 
 ### travis-ci
@@ -11,7 +11,7 @@ https://travis-ci.org/wilsonzhang6/CMPE-131-Grp10.svg?branch=master
 Test cases are under tests folder
 In order to run test cases, we type:
 
-   py.test
+    py.test
 
 ### Sphinx Document:
 Sphinx Document is located:
