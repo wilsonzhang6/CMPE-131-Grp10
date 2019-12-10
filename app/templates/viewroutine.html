@@ -1,24 +1,149 @@
-<!--incomplete-->
 {% extends "base.html" %}
 
 {% block content%}
-  {% for routine in routines %}
-    {% if routine.author == current_user %}
-    <br>
-        <article class="media content-section">
-          <div class="media-body">
-            <div class="article-metadata">
-              <p style="padding-right: 5px; color: yellowgreen;">
-                <!--<h1>{{ routine.author.username }}</h1> -->
-              </p>
-            </div>         
-            <h2 style="color: orange;"><a class="article-title" href="{{ url_for('routine', routine_id=routine.id) }}">{{ routine.title }}</a></h2>
-            <h3 class="article-content" style="color: yellowgreen;">{{ routine.description }}</h3>
-            <h4 style="color: whitesmoke">{{ routine.timestamp.strftime('%m-%d-%Y') }}</h4>
-          </div>
+
+<style>
+
+  /*line-break*/
+  #line-break-text{
+      position: absolute;
+      left: 40px; 
+      top: 155px; 
+      width: 1297px; 
+
+      font-family: "Oxygen", sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 23px;
+      display: flex;
+      align-items: center;
+      text-transform: uppercase;
+
+      color: #C8C7C7;
+  }
+
+  #line-break{
+      position: absolute;
+      left: 20px; 
+      top: 160px; 
+      width: 1370px; 
+      border: 1px solid #C8C7C7;
+      transform: matrix(1, 0, 0, 1, 0, 0);
+  }
+
+  /*routine body shape*/
+  .single-routine{
+    position: absolute; 
+    left: 20px; 
+    width: 965px; 
+    height: 131px; 
+    
+    background: #B5D9B3;
+    border-color: #B5D9B3;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0,25);
+    border-radius: 9px;   
+    z-index: 1; 
+  }
+
+  /*click area*/
+  .routine-clickable{
+    position: absolute; 
+    left: 100px; 
+    width: 965px; 
+    height: 131px; 
+    
+    background: #B5D9B3;
+    border-color: #B5D9B3;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0,25);
+    border-radius: 9px;   
+    z-index: 2; 
+  }
+
+  /*routine title*/
+  .routine-title{
+    position: absolute; 
+    height: 41px; 
+    left: 100px; 
+
+    font-family: 'Oxygen', sans-serif;
+    font-style: normal;
+    font-weight: bold; 
+    font-size: 18px; 
+    line-height: 23px; 
+    display: flex; 
+    align-items: center;
+    text-decoration: underline;
+    text-transform: uppercase;
+    color: #4F4F4F;
+    z-index: 3; 
+  }
+
+  /*routine description*/
+  .routine-description{
+    position: absolute; 
+    width: 50%; 
+    top: 40px; 
+    left: 100px; 
+
+    font-family: 'Oxygen', sans-serif;
+    font-style: normal;
+    font-weight: normal; 
+    font-size: 14px; 
+    line-height: 18px; 
+
+    color: #000000;
+    z-index: 3; 
+  }
+
+
+</style>
+
+<!--Code for search bar| place one at each page except base-->
+<div class="search-area">
+    <!--this is the search form-->
+    <form action="" method="post" novalidate>
+        {{ searchBar.hidden_tag() }}
+        <p>{{ searchBar.routineName(class_="search-bar", placeholder=" SEARCH", size=32) }}</p>
+    </form>
+</div>
+
+<div class="view-routine-feed-page">
+
+  <div class="line-break-area">
+    <!--Line break-->
+    <a id="line-break-text">Your Routines</a>
+    <hr id="line-break">
+  </div>
+  <br>
+  <br>
+  <div class="user-routines">
+    {% for routine in routines %}
+      {% if routine.author == current_user %}
+      <br>
+      <br>
+      
+      <article class="single-routine">
+         <a class="routine-title" href="{{ url_for('routine', routine_id=routine.id) }}">
+            <!--a class="article-title" href="{{ url_for('routine', routine_id=routine.id) }}"-->
+            {{ routine.title }}
+         </a>
+          <br>
+          <p class="routine-description">
+            {{ routine.description }}
+          </p>
+          <!--h2>
+            {{ routine.timestamp.strftime('%m-%d-%Y') }}
+          </h2-->
         </article>
-    {% endif %}
-  {% endfor %}
+        <br>
+        <br>
+        <br>
+        <br>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
 
 
 {% endblock content %}

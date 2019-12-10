@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.abspath('../../'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'CMPE-131-Grp10'
+project = 'Taskroute'
 copyright = '2019, Visva'
 author = 'Visva'
 

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Function &#8212; CMPE-131-Grp10  documentation</title>
+    <title>Function &#8212; Taskroute  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -31,8 +31,13 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="module-app.forms">
-<span id="function"></span><h1>Function<a class="headerlink" href="#module-app.forms" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="function">
+<h1>Function<a class="headerlink" href="#function" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="routes">
+<h2>Routes<a class="headerlink" href="#routes" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-app.forms">
+<span id="forms"></span><h2>Forms<a class="headerlink" href="#module-app.forms" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="app.forms.CreateRoutineForm">
 <em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">CreateRoutineForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.CreateRoutineForm" title="Permalink to this definition">¶</a></dt>
@@ -43,7 +48,7 @@
 
 <dl class="attribute">
 <dt id="app.forms.CreateRoutineForm.submit">
-<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Routine',), {})&gt;</em><a class="headerlink" href="#app.forms.CreateRoutineForm.submit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Create',), {})&gt;</em><a class="headerlink" href="#app.forms.CreateRoutineForm.submit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -219,6 +224,100 @@
 </dd></dl>
 
 </div>
+<div class="section" id="module-app.models">
+<span id="models"></span><h2>Models<a class="headerlink" href="#module-app.models" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="app.models.Routine">
+<em class="property">class </em><code class="sig-prename descclassname">app.models.</code><code class="sig-name descname">Routine</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.Routine" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="app.models.Routine.description">
+<code class="sig-name descname">description</code><a class="headerlink" href="#app.models.Routine.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.models.Routine.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#app.models.Routine.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.models.Routine.timestamp">
+<code class="sig-name descname">timestamp</code><a class="headerlink" href="#app.models.Routine.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.models.Routine.title">
+<code class="sig-name descname">title</code><a class="headerlink" href="#app.models.Routine.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.models.Routine.user_id">
+<code class="sig-name descname">user_id</code><a class="headerlink" href="#app.models.Routine.user_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="app.models.User">
+<em class="property">class </em><code class="sig-prename descclassname">app.models.</code><code class="sig-name descname">User</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="app.models.User.check_password">
+<code class="sig-name descname">check_password</code><span class="sig-paren">(</span><em class="sig-param">password</em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User.check_password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.models.User.email">
+<code class="sig-name descname">email</code><a class="headerlink" href="#app.models.User.email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="app.models.User.get_reset_token">
+<code class="sig-name descname">get_reset_token</code><span class="sig-paren">(</span><em class="sig-param">expire_seconds=900</em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User.get_reset_token" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.models.User.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#app.models.User.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.models.User.image_file">
+<code class="sig-name descname">image_file</code><a class="headerlink" href="#app.models.User.image_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.models.User.password_hash">
+<code class="sig-name descname">password_hash</code><a class="headerlink" href="#app.models.User.password_hash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.models.User.routines">
+<code class="sig-name descname">routines</code><a class="headerlink" href="#app.models.User.routines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="app.models.User.set_password">
+<code class="sig-name descname">set_password</code><span class="sig-paren">(</span><em class="sig-param">password</em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User.set_password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="app.models.User.username">
+<code class="sig-name descname">username</code><a class="headerlink" href="#app.models.User.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="app.models.User.verify_reset_token">
+<code class="sig-name descname">verify_reset_token</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User.verify_reset_token" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="app.models.load_user">
+<code class="sig-prename descclassname">app.models.</code><code class="sig-name descname">load_user</code><span class="sig-paren">(</span><em class="sig-param">id</em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.load_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
 
 
           </div>
@@ -227,7 +326,7 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">CMPE-131-Grp10</a></h1>
+<h1 class="logo"><a href="index.html">Taskroute</a></h1>
 
 
 
@@ -240,7 +339,12 @@
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">How to install my app</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Function</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Function</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#routes">Routes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.forms">Forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.models">Models</a></li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">

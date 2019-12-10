@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to CMPE-131-Grp10's documentation!
+Welcome to Taskroute's documentation!
 ==========================================
 
 .. toctree::

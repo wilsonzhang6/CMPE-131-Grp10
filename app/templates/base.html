@@ -25,21 +25,42 @@
             background-color: #535353; 
         }
 
+        /*search bar - THIS IS CSS CODE USED (INHERITED) FOR SEARCH BAR HTML ELEMENTS ACROSS ALL TEMPLATES
+        DO NOT CHANGE*/
+        .search-bar{
+            position: fixed; 
+            right: 20px; 
+            width: 451px; 
+            height: 42px; 
+            top: 25px; 
+            background: #FFFFFF;
+            border: 1px solid #000000;
+            box-sizing: border-box;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 7px;
+            z-index: 4; 
+        }
+
         /* This is the logo text itself*/
         #App-Logo{
             position: fixed;
             top: 10px;
-            z-index: 3;
+            
             font-family: "Oxegyn", sans-serif;
             font-style: normal;
             font-weight: bold;
             font-size: 50px;
-            left: 90px; 
-            text-transform: uppercase;
-            font-feature-settings: 'cpsp' on;
+            text-shadow: 3px 0px 10px rgba(0, 0, 0, 0.25);
             color: #0F0F0F;
             text-decoration: none;
+            /*
             mix-blend-mode: darken;
+            font-feature-settings: 'cpsp' on;
+            text-transform: uppercase;
+            */
+            
+            z-index: 3;
+            left: 90px;
         }
 
         /* This is the green rectangle for the banner */
@@ -84,6 +105,8 @@
             background-color: #272626;
             box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
             overflow-x: hidden;
+            backdrop-filter: blur(8px);
+            opacity: 0.9; 
             /*transition: 0.5s;*/
             padding-top: 60px;
         }
@@ -147,7 +170,7 @@
             text-decoration: none;
         }
     </style>
-    <body>
+    <body id="main">
 
         <!--this is the hamburger menu icon-->
         <div id="hamburger-menu-component">
@@ -162,7 +185,6 @@
                     {% if current_user.is_anonymous %}
                     <a href="{{ url_for('login') }}">Login</a>
                     {% else %}
-                    <a href="{{ url_for('search')}}">Search</a><br>
                     <a href="{{ url_for('viewroutine') }}"">Your Feed</a><br>
                     <a href="{{ url_for('createRoutine') }}">New Routine</a><br>
                     <a href="{{ url_for('index') }}">Your Account</a><br>
@@ -175,15 +197,15 @@
         <!--java script for side nav bar-->
         <script>
             function openSideNavBar() {
-             document.getElementById("sideNavBarPanel").style.width = "240px";
-             document.getElementById("hamburger-menu-open").style.zIndex = "0"
-             document.getElementById("hamburger-menu-close").style.zIndex = "4"
+                document.getElementById("sideNavBarPanel").style.width = "240px";
+                document.getElementById("hamburger-menu-open").style.zIndex = "0"
+                document.getElementById("hamburger-menu-close").style.zIndex = "4"
             }
             
             function closeSideNavBar() {
-              document.getElementById("sideNavBarPanel").style.width = "0"; 
-              document.getElementById("hamburger-menu-open").style.zIndex = "4"
-              document.getElementById("hamburger-menu-close").style.zIndex = "0"
+                document.getElementById("sideNavBarPanel").style.width = "0"; 
+                document.getElementById("hamburger-menu-open").style.zIndex = "4"
+                document.getElementById("hamburger-menu-close").style.zIndex = "0"
             }
         </script>
         
@@ -191,7 +213,7 @@
         <area shape="rect", class="banner">
             <p>
                 <!--App logo - it needs an href linked to the home page once created-->
-                <a id="App-Logo" href="{{ url_for('home') }}">
+                <a id="App-Logo" href="{{ url_for('home') }}" >
                     T A S K R O U T E 
                 </a>
             </p>

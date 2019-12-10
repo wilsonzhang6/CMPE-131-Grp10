@@ -56,18 +56,27 @@
     }
     
     
-    </style>
+</style>
 
-    <div class="reset-request-page">
-        <!--this is the account circle-->
-        <i class="material-icons security-icon">security</i>
+<!--Code for search bar| place one at each page except base-->
+<div class="search-area">
+    <!--this is the search form-->
+    <form action="" method="post" novalidate>
+        {{ searchBar.hidden_tag() }}
+        <p>{{ searchBar.routineName(class_="search-bar", placeholder=" SEARCH", size=32) }}</p>
+    </form>
+</div>
 
-        <!--this is the log in form-->
-        <form action="" method="post" novalidate>
-            {{ form.hidden_tag() }}
-            <p>{{ form.email(class_="reset-request-email", placeholder=" ACCOUNT EMAIL", size=32) }}</p>
-            <p>{{ form.submit(class_="request-button") }}</p>
-        </form>
-    </div>
+<div class="reset-request-page">
+    <!--this is the account circle-->
+    <i class="material-icons security-icon">security</i>
+
+    <!--this is the log in form-->
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>{{ form.email(class_="reset-request-email", placeholder=" ACCOUNT EMAIL", size=32) }}</p>
+        <p>{{ form.submit(class_="request-button") }}</p>
+    </form>
+</div>
 
 {% endblock content %}

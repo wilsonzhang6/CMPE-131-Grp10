@@ -3,12 +3,6 @@
 {% block content %}
 
 <style>
-    /*
-    #background-image{
-        background-size: cover; 
-        background-attachment: fixed;
-    }*/
-
     .crossfade > figure {
         position: absolute;
         animation: imageAnimation 12s linear infinite 0s; 
@@ -60,16 +54,45 @@
         }
     }
 
+    #home-message{
+        position: absolute;
+        width: 1035px;
+        height: 328px;
+        left: 97px;
+        top: 218px;
+
+        font-family: "Oxygen", sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 72px;
+        line-height: 91px;
+        text-transform: uppercase;
+
+        color: #FFFFFF;
+
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    }
+
 </style>
-<body id="background-image">
 
-    <div class="crossfade">
-        <figure></figure>
-        <figure></figure>
-        <figure></figure>
-    </div>
+<!--Code for search bar| place one at each page except base-->
+<div class="search-area">
+    <!--this is the search form-->
+    <form action="" method="post" novalidate>
+        {{ searchBar.hidden_tag() }}
+        <p>{{ searchBar.routineName(class_="search-bar", placeholder=" SEARCH", size=32) }}</p>
+    </form>
+</div>
 
+<!--For background slideshow-->
+<div class="crossfade">
+    <figure></figure>
+    <figure></figure>
+    <figure></figure>
+</div>
 
-</body>
+<a id="home-message">ORGANIZE YOUR MICROTASKS</a>
+
 
 {% endblock %}

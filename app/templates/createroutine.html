@@ -2,14 +2,54 @@
 
 {% block content %}
 
+<!--Code for search bar| place one at each page except base-->
+<div class="search-area">
+    <!--this is the search form-->
+    <form action="" method="post" novalidate>
+        {{ searchBar.hidden_tag() }}
+        <p>{{ searchBar.routineName(class_="search-bar", placeholder=" SEARCH", size=32) }}</p>
+    </form>
+</div>
 
-  <form action = "" method = "post">
-    
-    {{form.title(placeholder="TITLE")}}
-    <br>
-    {{form.description(placeholder=" DESCRIPTION")}}
-    <br>
-    {{ form.submit(class_="btn btn-primary") }}
-  </form>
-
-{% endblock %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <div class="form-group">
+                <p style="width: 400px; font-size: x-large; color: skyblue;">
+                {{ form.title.label(class="form-control-label") }}
+                {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.title(class="form-control form-control-lg") }}
+                {% endif %}
+                </p>
+            </div>
+            <div class="form-group">
+                <p style="width: 800px; font-size: x-large; color: skyblue;">
+                {{ form.description.label(class="form-control-label") }}
+                {% if form.description.errors %}
+                    {{ form.description(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.description.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.description(class="form-control form-control-lg") }}
+                {% endif %}
+                </p>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

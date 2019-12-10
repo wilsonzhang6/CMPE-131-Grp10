@@ -5,7 +5,7 @@
 <style>
     .account-top-info-component{
         position: absolute; 
-        left: 80px; 
+        left: 40px; 
         top: 50px; 
     }
 
@@ -62,11 +62,12 @@
 
     .update-form-area{
         position: absolute;
-        left: 120px; 
+        left: 40px; 
         top: 190px; 
 
         font-family: "Oxegyn", sans-serif;
         font-style: normal;
+        color: #C8C7C7;
     }
 
     /*css code for the general page area - currently used for positioning relative to banner*/
@@ -76,6 +77,15 @@
     }
 
 </style>
+
+<!--Code for search bar| place one at each page except base-->
+<div class="search-area">
+    <!--this is the search form-->
+    <form action="" method="post" novalidate>
+        {{ searchBar.hidden_tag() }}
+        <p>{{ searchBar.routineName(class_="search-bar", placeholder=" SEARCH", size=32) }}</p>
+    </form>
+</div>
 
 <!-- current_user is a property of flask-login -->
 <div class="account-area-component">
@@ -104,19 +114,20 @@
         <form action="" method="post" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <p>
+                Username: <br>
                 {{ form.username(class_= "update-account-username", size=32, placeholder=" USERNAME") }}<br>
                 {% for error in form.username.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
             <p>
-                {{ form.email(class_="update-account-email", size=64, placeholder=" EMAIL") }}<br>
+                Email: {{ form.email(class_="update-account-email", size=64, placeholder=" EMAIL") }}<br>
                 {% for error in form.email.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
             <p>
-                {{ form.picture(class_="form-control-file") }}<br>
+                Change Picture: {{ form.picture(class_="form-control-file") }}<br>
                 {% if form.picture.errors %}
                     {% for error in form.picture.errors %}
                     <span style="color: red;">[{{ error }}]</span><br>
@@ -126,7 +137,6 @@
             <p>{{ form.submit(class_="update-account-button") }}</p>
         </form>
     </div>
-
 </div>
 
 

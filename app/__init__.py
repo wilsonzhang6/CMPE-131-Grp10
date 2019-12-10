@@ -7,7 +7,6 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
-
 db = SQLAlchemy()
 login_manager = LoginManager()
 
@@ -31,28 +30,18 @@ def create_app(test_config=None):
     login_manager.init_app(app)
     login_manager.login_view = 'login'
 
+    #For password reset
+    app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
+    app.config['MAIL_PORT'] = 587
+    app.config['MAIL_USE_TLS'] = True
+
+    #SET Environment variable or hard code in a gmail account
+    app.config['MAIL_USERNAME'] = 'taskroutecmpe131@gmail.com'
+    app.config['MAIL_PASSWORD'] = '15spLW#GY*m6'
+
     # here are all the pieces of my program
     with app.app_context():
         from . import routes
         db.create_all()
 
     return app
-
-
-
-'''
-#flask object
-app = Flask(__name__)
-app.config.from_object(Config)
-
-#database
-db = SQLAlchemy(app) #instantiation
-
-#login
-login = LoginManager(app)
-    # right side is the function that's called to login users
-login.login_view = 'login'
-
-#import models (tables) for database
-from app import routes, models
-'''
