@@ -120,7 +120,7 @@ def index():
         current_user.email = form.email.data #replace the current user's email with the email that was inputted by form
         db.session.commit() #commit all changes into the database
         flash('your account information has been updated!', 'success') #message flash
-        return redirect(url_for('viewroutine')) #redirect user back to the index page
+        return redirect(url_for('index')) #redirect user back to the index page
     elif request.method == 'GET': #When the page requests a GET (such as when the page loads in the browser)
         form.username.data = current_user.username #pre-fill the form field with the user's current username
         form.email.data = current_user.email #pre-fill the form field with the user's current email
@@ -144,8 +144,9 @@ def index():
 def createRoutine():
     form = CreateRoutineForm()
     if form.validate_on_submit(): #added this part
-        #tasks = Routine(title=form.title.data, description=form.description.data, timestamp=date.today())
-        routine = Routine(title=form.title.data, description=form.description.data, timestamp=date.today(), author=current_user)
+        routine = Routine(title=form.title.data, description=form.description.data, picture= form.picture.data, timestamp=date.today(), author=current_user)
+        if form.picture.data: #if the form has picture data input
+            routine.image_file = save_picture(form.picture.data)#pass the uploaded picture in order to save
         db.session.add(routine)
         db.session.commit()
         flash('Your routine has been created!', 'success')
@@ -182,6 +183,8 @@ def update_routine(routine_id):
         abort(403)
     form = CreateRoutineForm()
     if form.validate_on_submit():
+        if form.picture.data: #if the form has picture data input
+            routine.image_file = save_picture(form.picture.data)#pass the uploaded picture in order to save
         routine.title = form.title.data
         routine.description = form.description.data
         routine.timestamp=date.today()

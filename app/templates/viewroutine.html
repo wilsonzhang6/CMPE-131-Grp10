@@ -46,18 +46,15 @@
     z-index: 1; 
   }
 
-  /*click area*/
-  .routine-clickable{
-    position: absolute; 
+  .routine-image{
+    position: absolute;
     left: 100px; 
-    width: 965px; 
-    height: 131px; 
-    
-    background: #B5D9B3;
-    border-color: #B5D9B3;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0,25);
-    border-radius: 9px;   
-    z-index: 2; 
+    top: 100px; 
+    z-index: 5; 
+
+
+    height: 75px; 
+    width: 75px
   }
 
   /*routine title*/
@@ -124,10 +121,11 @@
       <br>
       
       <article class="single-routine">
-         <a class="routine-title" href="{{ url_for('routine', routine_id=routine.id) }}">
+          <img class="routine-image" src="static/profile_pics/{{ routine.image_file }}">
+          <a class="routine-title" href="{{ url_for('routine', routine_id=routine.id) }}">
             <!--a class="article-title" href="{{ url_for('routine', routine_id=routine.id) }}"-->
             {{ routine.title }}
-         </a>
+          </a>
           <br>
           <p class="routine-description">
             {{ routine.description }}

@@ -16,7 +16,6 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(128), index=True, unique=True, nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password_hash = db.Column(db.String(128))
-    #routines = db.relationship('Routine', backref='author', lazy='dynamic')
     routines = db.relationship('Routine', backref='author', lazy=True)
 
     def set_password(self, password):
@@ -46,10 +45,10 @@ class Routine(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text(2000), nullable=False)
-    #timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    image_file = db.Column(db.String(20), nullable=False, default = 'default.jpg')
     timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
-     #this is the author of the routine
+    #this is the author of the routine
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
 
     def __repr__(self):

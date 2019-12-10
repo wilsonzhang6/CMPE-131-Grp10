@@ -37,8 +37,8 @@ class RegistrationForm(FlaskForm):
 #Form for creating Routine
 class CreateRoutineForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
-    #description = StringField('Description', validators=[DataRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])
+    picture = FileField('Routine Picture', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Create')
 
     def validate_maxtitle(self, title):
