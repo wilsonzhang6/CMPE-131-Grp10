@@ -1,4 +1,4 @@
-###Link to our app:
+### Link to our app:
 
 https://taskroute.herokuapp.com
 
@@ -15,4 +15,4 @@ In order to run test cases, we type:
 
 ### Sphinx Document:
 Sphinx Document is located:
- ```docs--> build --> html --> index.html``` 
+ ```docs\build\html\index.html``` 
