@@ -5,6 +5,7 @@ https://taskroute.herokuapp.com
 
 ### travis-ci
 https://travis-ci.org/wilsonzhang6/CMPE-131-Grp10.svg?branch=master
+https://api.travis-ci.org/wilsonzhang6/CMPE-131-Grp10.svg?branch=master&fbclid=IwAR3DURTrOzt_2ccTY-jj5RAkRPh80b6m-LneH6ljswCqL3kbso2fltfz54k
 
 
 ### Test cases:
