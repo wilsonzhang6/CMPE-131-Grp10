@@ -1,17 +1,9 @@
-How to install my app
+How to run our app
 =====================
 
-Requirements:
++++++++++++++++++
+To run our app:
++++++++++++++++++
+``https://taskroute.herokuapp.com``
 
-Flask: 
-
-install flask unsing ``pip3 install flask``
-
-1. To install project, type the following in terminal:
-
-``git clone https://github.com/wilsonzhang6/CMPE-131-Grp10.git``
-
-2. To run, type:
-
-``python3 -m flask run`` or ``flask run``
 

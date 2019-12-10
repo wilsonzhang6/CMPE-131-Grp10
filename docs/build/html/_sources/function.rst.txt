@@ -16,5 +16,4 @@ Forms
 Models
 +++++++++
 .. automodule:: app.models
-	:members:
-	:undoc-members:
+	:members: User, Routine
