@@ -1,7 +1,10 @@
-How to install my app
+How to run our app
 =====================
 
-Requirements:
++++++++++++++++++
+To run our app:
++++++++++++++++++
+`<https://taskroute.herokuapp.com>`_
 
 Flask: 
 
