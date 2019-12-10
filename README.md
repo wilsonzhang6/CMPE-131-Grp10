@@ -8,11 +8,12 @@ https://travis-ci.org/wilsonzhang6/CMPE-131-Grp10.svg?branch=master
 
 
 ### Test cases:
-Test cases are under tests folder
+Test cases are located ```app\tests\```
+
 In order to run test cases, we type:
 
     py.test
 
 ### Sphinx Document:
 Sphinx Document is located:
- ```docs\build\html\index.html``` 
+ ```docs\build\html\index.html```
