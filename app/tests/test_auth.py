@@ -7,7 +7,6 @@ from flask import url_for
 from datetime import date
 from flask_login import current_user, login_user, logout_user, login_required
 
-
 def test_get_login_page(client):
     #assert client.get(url_for('login')).status_code==200
     response=client.get(url_for('login'))
@@ -34,11 +33,27 @@ def test_home(client):
     #assert b"Register" in response.data
 
 def test_view_routine(client,db):
-    response= client.post(url_for('viewroutine'), data=dict(author='john',title='test title', description='test desc'), follow_redirects=True)
+    response= client.get(url_for('viewroutine'), data=dict(author='john',title='test title', description='test description'), follow_redirects=True)
     assert response.status_code == 200
     #assert b'author' in response.data
     assert b'title' in response.data
     #assert b'description' in response.data
+
+def test_view_routine(client):
+    response= client.get('/viewroutine')
+    #assert response.status_code == 200
+    #assert b'author' in response.data
+    assert b'title' in response.data
+    #assert b'description' in response.data
+
+def test_create_routine(client):
+    response= client.get('/createroutine')
+    #assert response.status_code == 200
+    #assert b'author' in response.data
+    assert b'title' in response.data
+    #assert b'description' in response.data    
+    
+
 '''
 #NOT WORKING
 def test_add_routine(client,db):
