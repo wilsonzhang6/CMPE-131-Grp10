@@ -1,4 +1,5 @@
-from CMPE-131-Grp10 import application
+from app import create_app
 
+app = create_app()
 if __name__ == "__main__":
-    application.run()
+    app.run()
