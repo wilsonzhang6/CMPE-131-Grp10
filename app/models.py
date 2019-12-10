@@ -12,6 +12,12 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 
 class User(UserMixin, db.Model):
+    """ This model is used for database collumn for Users
+            
+        :param db.Model: database model
+        :param UserMixin: Flask API
+    """
+
     id = db.Column(db.Integer, primary_key=True) #integer that is incremented when a new addition is added
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)
     email = db.Column(db.String(128), index=True, unique=True, nullable=False)
@@ -21,9 +27,17 @@ class User(UserMixin, db.Model):
     routines = db.relationship('Routine', backref='author', lazy=True)
 
     def set_password(self, password):
+        """ This method used to set pswd & generate hash
+            
+        :param password (PasswordField): password to set
+        """
         self.password_hash = generate_password_hash(password)
 
     def check_password(self, password):
+        """ This method used to check password
+            
+        :param password (PasswordField): password to check
+        """
         return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
@@ -31,10 +45,18 @@ class User(UserMixin, db.Model):
 
     #For password reset
     def get_reset_token(self, expire_seconds=900):
+        """ This method get a reset token for password reset
+            
+        :param expire_seconds=900 (int): token expiration time, default set to 900 seconds
+        """
         s = Serializer(app.config['SECRET_KEY'], expire_seconds)
         return s.dumps({'user_id': self.id}).decode('utf-8')
 
     def verify_reset_token(token):
+        """ This method is to verify password reset token 
+            
+        :param token (Token): Token to verify
+        """
         s = Serializer(app.config['SECRET_KEY'])
         try:
             user_id = s.loads(token)['user_id']
@@ -44,6 +66,10 @@ class User(UserMixin, db.Model):
 
 #This is modified to be a routine/post
 class Routine(db.Model):
+    """ This model is used for database collumn for Routines
+            
+        :param db.Model: database model
+    """
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text(2000), nullable=False)

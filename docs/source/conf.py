@@ -18,8 +18,8 @@ sys.path.insert(0, os.path.abspath('../../'))
 # -- Project information -----------------------------------------------------
 
 project = 'Taskroute'
-copyright = '2019, Visva'
-author = 'Visva'
+copyright = '2019, Group10'
+author = 'Group10'
 
 
 # -- General configuration ---------------------------------------------------

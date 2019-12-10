@@ -35,192 +35,224 @@
 <h1>Function<a class="headerlink" href="#function" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="routes">
 <h2>Routes<a class="headerlink" href="#routes" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><dl>
+<dt>home():</dt><dd><p>-Route for main homepage/intro-page</p>
+<p>Returns: Render of home.html &amp; associated parameters</p>
+</dd>
+<dt>login():</dt><dd><p>-Route for login page</p>
+<p>Returns: Render of login.html &amp; associated parameters</p>
+</dd>
+<dt>logout():</dt><dd><p>-User logout functionality</p>
+<p>Returns: Redirect to home()</p>
+</dd>
+<dt>register():</dt><dd><p>-Route for account registration page</p>
+<p>Returns: Render for register.html and associated parameters</p>
+</dd>
+<dt>save_picture():</dt><dd><p>-Helper method to be used to assist saving uploaded pictures</p>
+<p>Parameters:
+-form_picture: picture to be saved</p>
+<p>Returns: The picture that is to be saved</p>
+</dd>
+<dt>index():</dt><dd><p>-Route for user’s account page</p>
+<p>Returns: Render for index.html and associated parameters</p>
+</dd>
+<dt>createRoutine():</dt><dd><p>-Route for routine creation page</p>
+<p>Returns: Render for createroutine.html and associated parameters</p>
+</dd>
+<dt>routine():</dt><dd><p>-Route for an individual routine viewing</p>
+<p>Parameters:
+- routine_id: unique routine ID</p>
+<p>Returns: Render for routine.html and associated parameters</p>
+</dd>
+<dt>update_routine():</dt><dd><p>-Route for routine updating</p>
+<p>Parameters:
+- routine_id: unique routine ID</p>
+<p>Returns: Render for createroutine.html (re-updates despite same form) and associated parameters</p>
+</dd>
+<dt>delete_routine():</dt><dd><p>-Route for routine deletion</p>
+<p>Parameters:
+- routine_id: unique routine ID</p>
+<p>Returns: Redirect to viewroutine()</p>
+</dd>
+<dt>viewroutine():</dt><dd><p>-Route for all user’s routines &amp; logged in home</p>
+<p>Returns: Render for viewroutine.html and associated parameters</p>
+</dd>
+<dt>send_reset_email():</dt><dd><p>-Method used for sending a password reset send_reset_email</p>
+<p>Parameters:
+- user: The user in database that is requesting the email</p>
+</dd>
+<dt>reset_request():</dt><dd><p>-Route for page to request password reset</p>
+<p>Returns: Render for reset_request.html and associated parameters</p>
+</dd>
+<dt>reset_token():</dt><dd><p>-Route for page to reset account password</p>
+<p>Parameters:
+- token: accepted token that was sent by password reset email (security)</p>
+<p>Returns: Render for reset_request.html and associated parameters</p>
+</dd>
+<dt>searchresults(routine):</dt><dd><p>-Route for search results after inputting search in search bar field
+-Used by other methods</p>
+<p>Parameters:
+- routine: The routines that are found from the search</p>
+<p>Returns: Render for searchresults.html and associated parameters</p>
+</dd>
+</dl>
+</div></blockquote>
 </div>
 <div class="section" id="module-app.forms">
 <span id="forms"></span><h2>Forms<a class="headerlink" href="#module-app.forms" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="app.forms.CreateRoutineForm">
 <em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">CreateRoutineForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.CreateRoutineForm" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="app.forms.CreateRoutineForm.description">
-<code class="sig-name descname">description</code><em class="property"> = &lt;UnboundField(TextAreaField, ('Description',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.CreateRoutineForm.description" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.forms.CreateRoutineForm.submit">
-<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Create',), {})&gt;</em><a class="headerlink" href="#app.forms.CreateRoutineForm.submit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.forms.CreateRoutineForm.title">
-<code class="sig-name descname">title</code><em class="property"> = &lt;UnboundField(StringField, ('Title',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.CreateRoutineForm.title" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dd><p>This is the form used to create a routine. User must be logged in to create said routine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>FlaskForm</strong> – WTForm API</p>
+</dd>
+</dl>
 <dl class="method">
 <dt id="app.forms.CreateRoutineForm.validate_maxdesc">
 <code class="sig-name descname">validate_maxdesc</code><span class="sig-paren">(</span><em class="sig-param">description</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.CreateRoutineForm.validate_maxdesc" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Method used to limit the number of characters up to 2000</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>(</strong><strong>String</strong><strong>)</strong> (<em>description</em>) – The desired description of the routine</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="app.forms.CreateRoutineForm.validate_maxtitle">
 <code class="sig-name descname">validate_maxtitle</code><span class="sig-paren">(</span><em class="sig-param">title</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.CreateRoutineForm.validate_maxtitle" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Method used to limit the number of characters up to 100</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>(</strong><strong>String</strong><strong>)</strong> (<em>title</em>) – The desired title of the routine</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="app.forms.LoginForm">
 <em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">LoginForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.LoginForm" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="app.forms.LoginForm.password">
-<code class="sig-name descname">password</code><em class="property"> = &lt;UnboundField(PasswordField, ('Password',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.LoginForm.password" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.forms.LoginForm.remember_me">
-<code class="sig-name descname">remember_me</code><em class="property"> = &lt;UnboundField(BooleanField, ('Remember Me',), {})&gt;</em><a class="headerlink" href="#app.forms.LoginForm.remember_me" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.forms.LoginForm.submit">
-<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Login',), {})&gt;</em><a class="headerlink" href="#app.forms.LoginForm.submit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.forms.LoginForm.username">
-<code class="sig-name descname">username</code><em class="property"> = &lt;UnboundField(StringField, ('Username',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.LoginForm.username" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dd><p>This is the Form used for user Login</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>FlaskForm</strong> – WTForm API</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="class">
 <dt id="app.forms.RegistrationForm">
 <em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">RegistrationForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.RegistrationForm" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="app.forms.RegistrationForm.email">
-<code class="sig-name descname">email</code><em class="property"> = &lt;UnboundField(StringField, ('Email',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;, &lt;wtforms.validators.Email object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.RegistrationForm.email" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.forms.RegistrationForm.password">
-<code class="sig-name descname">password</code><em class="property"> = &lt;UnboundField(PasswordField, ('Password',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.RegistrationForm.password" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.forms.RegistrationForm.password2">
-<code class="sig-name descname">password2</code><em class="property"> = &lt;UnboundField(PasswordField, ('Repeat Password',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;, &lt;wtforms.validators.EqualTo object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.RegistrationForm.password2" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.forms.RegistrationForm.submit">
-<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Register',), {})&gt;</em><a class="headerlink" href="#app.forms.RegistrationForm.submit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.forms.RegistrationForm.username">
-<code class="sig-name descname">username</code><em class="property"> = &lt;UnboundField(StringField, ('Username',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.RegistrationForm.username" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dd><p>This is the Form used for user Login</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>FlaskForm</strong> – WTForm API</p>
+</dd>
+</dl>
 <dl class="method">
 <dt id="app.forms.RegistrationForm.validate_email">
 <code class="sig-name descname">validate_email</code><span class="sig-paren">(</span><em class="sig-param">email</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.RegistrationForm.validate_email" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Method used to validate inputted username from form</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>username</strong> – user’s username</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="app.forms.RegistrationForm.validate_username">
 <code class="sig-name descname">validate_username</code><span class="sig-paren">(</span><em class="sig-param">username</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.RegistrationForm.validate_username" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Method used to validate inputted username from form</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>username</strong> – user’s username</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="app.forms.RequestResetForm">
 <em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">RequestResetForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.RequestResetForm" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="app.forms.RequestResetForm.email">
-<code class="sig-name descname">email</code><em class="property"> = &lt;UnboundField(StringField, ('Email',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;, &lt;wtforms.validators.Email object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.RequestResetForm.email" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.forms.RequestResetForm.submit">
-<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Request Reset',), {})&gt;</em><a class="headerlink" href="#app.forms.RequestResetForm.submit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dd><p>This form is used to request a reset password link</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>FlaskForm</strong> – WTForms API</p>
+</dd>
+</dl>
 <dl class="method">
 <dt id="app.forms.RequestResetForm.validate_email">
 <code class="sig-name descname">validate_email</code><span class="sig-paren">(</span><em class="sig-param">email</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.RequestResetForm.validate_email" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Method used to check &amp; verify that it is the correct account email that is being updated</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>(</strong><strong>StringField</strong><strong>)</strong> (<em>email</em>) – email that is to be updated</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="app.forms.ResetPasswordForm">
 <em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">ResetPasswordForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.ResetPasswordForm" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="app.forms.ResetPasswordForm.password">
-<code class="sig-name descname">password</code><em class="property"> = &lt;UnboundField(PasswordField, ('Password',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.ResetPasswordForm.password" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.forms.ResetPasswordForm.password2">
-<code class="sig-name descname">password2</code><em class="property"> = &lt;UnboundField(PasswordField, ('Repeat Password',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;, &lt;wtforms.validators.EqualTo object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.ResetPasswordForm.password2" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.forms.ResetPasswordForm.submit">
-<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Reset Password',), {})&gt;</em><a class="headerlink" href="#app.forms.ResetPasswordForm.submit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dd><p>This form is used to reset user’s account password</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>FlaskForm</strong> – WTForms API</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="class">
 <dt id="app.forms.UpdateAccountForm">
 <em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">UpdateAccountForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.UpdateAccountForm" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="app.forms.UpdateAccountForm.email">
-<code class="sig-name descname">email</code><em class="property"> = &lt;UnboundField(StringField, ('Email',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;, &lt;wtforms.validators.Email object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.UpdateAccountForm.email" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.forms.UpdateAccountForm.picture">
-<code class="sig-name descname">picture</code><em class="property"> = &lt;UnboundField(FileField, ('Profile Picture',), {'validators': [&lt;flask_wtf.file.FileAllowed object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.UpdateAccountForm.picture" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.forms.UpdateAccountForm.submit">
-<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Update Account',), {})&gt;</em><a class="headerlink" href="#app.forms.UpdateAccountForm.submit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.forms.UpdateAccountForm.username">
-<code class="sig-name descname">username</code><em class="property"> = &lt;UnboundField(StringField, ('Username',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.UpdateAccountForm.username" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dd><p>This form is used to update user’s account details</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>FlaskForm</strong> – WTForms API</p>
+</dd>
+</dl>
 <dl class="method">
 <dt id="app.forms.UpdateAccountForm.validate_email">
 <code class="sig-name descname">validate_email</code><span class="sig-paren">(</span><em class="sig-param">email</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.UpdateAccountForm.validate_email" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Method used to check &amp; verify that it is the correct account email that is being updated</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>(</strong><strong>StringField</strong><strong>)</strong> (<em>email</em>) – email that is to be updated</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="app.forms.UpdateAccountForm.validate_username">
 <code class="sig-name descname">validate_username</code><span class="sig-paren">(</span><em class="sig-param">username</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.UpdateAccountForm.validate_username" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Method used to check &amp; verify that it is the correct account username that is being updated</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>(</strong><strong>StringField</strong><strong>)</strong> (<em>username</em>) – username that is to be updated</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="app.forms.searchForm">
 <em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">searchForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.searchForm" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="app.forms.searchForm.routineName">
-<code class="sig-name descname">routineName</code><em class="property"> = &lt;UnboundField(StringField, ('Search routine',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.searchForm.routineName" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.forms.searchForm.submit">
-<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Search',), {})&gt;</em><a class="headerlink" href="#app.forms.searchForm.submit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dd><p>This form is used for global search functionality</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>FlaskForm</strong> – WTForms API</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -229,92 +261,71 @@
 <dl class="class">
 <dt id="app.models.Routine">
 <em class="property">class </em><code class="sig-prename descclassname">app.models.</code><code class="sig-name descname">Routine</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.Routine" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="app.models.Routine.description">
-<code class="sig-name descname">description</code><a class="headerlink" href="#app.models.Routine.description" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.models.Routine.id">
-<code class="sig-name descname">id</code><a class="headerlink" href="#app.models.Routine.id" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.models.Routine.timestamp">
-<code class="sig-name descname">timestamp</code><a class="headerlink" href="#app.models.Routine.timestamp" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.models.Routine.title">
-<code class="sig-name descname">title</code><a class="headerlink" href="#app.models.Routine.title" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.models.Routine.user_id">
-<code class="sig-name descname">user_id</code><a class="headerlink" href="#app.models.Routine.user_id" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dd><p>This model is used for database collumn for Routines</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db.Model</strong> – database model</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="class">
 <dt id="app.models.User">
 <em class="property">class </em><code class="sig-prename descclassname">app.models.</code><code class="sig-name descname">User</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
+<dd><p>This model is used for database collumn for Users</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db.Model</strong> – database model</p></li>
+<li><p><strong>UserMixin</strong> – Flask API</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
 <dt id="app.models.User.check_password">
 <code class="sig-name descname">check_password</code><span class="sig-paren">(</span><em class="sig-param">password</em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User.check_password" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.models.User.email">
-<code class="sig-name descname">email</code><a class="headerlink" href="#app.models.User.email" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This method used to check password</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>(</strong><strong>PasswordField</strong><strong>)</strong> (<em>password</em>) – password to check</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="app.models.User.get_reset_token">
 <code class="sig-name descname">get_reset_token</code><span class="sig-paren">(</span><em class="sig-param">expire_seconds=900</em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User.get_reset_token" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.models.User.id">
-<code class="sig-name descname">id</code><a class="headerlink" href="#app.models.User.id" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.models.User.image_file">
-<code class="sig-name descname">image_file</code><a class="headerlink" href="#app.models.User.image_file" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.models.User.password_hash">
-<code class="sig-name descname">password_hash</code><a class="headerlink" href="#app.models.User.password_hash" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.models.User.routines">
-<code class="sig-name descname">routines</code><a class="headerlink" href="#app.models.User.routines" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This method get a reset token for password reset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>(</strong><strong>int</strong><strong>)</strong> (<em>expire_seconds=900</em>) – token expiration time, default set to 900 seconds</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="app.models.User.set_password">
 <code class="sig-name descname">set_password</code><span class="sig-paren">(</span><em class="sig-param">password</em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User.set_password" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="app.models.User.username">
-<code class="sig-name descname">username</code><a class="headerlink" href="#app.models.User.username" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This method used to set pswd &amp; generate hash</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>(</strong><strong>PasswordField</strong><strong>)</strong> (<em>password</em>) – password to set</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="app.models.User.verify_reset_token">
 <code class="sig-name descname">verify_reset_token</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User.verify_reset_token" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dd><p>This method is to verify password reset token</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>(</strong><strong>Token</strong><strong>)</strong> (<em>token</em>) – Token to verify</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="app.models.load_user">
-<code class="sig-prename descclassname">app.models.</code><code class="sig-name descname">load_user</code><span class="sig-paren">(</span><em class="sig-param">id</em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.load_user" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -378,7 +389,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2019, Visva.
+      &copy;2019, Group10.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.2</a>

@@ -21,6 +21,7 @@ from . import login_manager
 #Home page
 @app.route('/home', methods=['GET', 'POST']) 
 def home():
+
     #Code for search bar
     searchBar = searchForm(prefix="searchBar")
     routine= Routine.query.all()

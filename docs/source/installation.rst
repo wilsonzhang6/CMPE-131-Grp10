@@ -11,7 +11,8 @@ install flask unsing ``pip3 install flask``
 
 ``git clone https://github.com/wilsonzhang6/CMPE-131-Grp10.git``
 
-2. To run, type:
+2. To run:
 
-``python3 -m flask run`` or ``flask run``
+If using python3: ``python3 -m flask run``
+Else: ``python -m flask run`` or ``flask run``
 

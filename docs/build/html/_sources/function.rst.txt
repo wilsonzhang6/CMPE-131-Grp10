@@ -3,18 +3,113 @@ Function
 ++++++++
 Routes
 ++++++++
-.. automodule:: app.routes
-	:members:
-    	:undoc-members:
+	home():
+		-Route for main homepage/intro-page
+
+		Returns: Render of home.html & associated parameters
+
+	login():
+		-Route for login page
+
+		Returns: Render of login.html & associated parameters
+
+	logout():
+		-User logout functionality
+
+		Returns: Redirect to home()
+
+	register():
+		-Route for account registration page
+
+		Returns: Render for register.html and associated parameters
+	
+	save_picture():
+		-Helper method to be used to assist saving uploaded pictures
+
+		Parameters:
+		-form_picture: picture to be saved
+
+		Returns: The picture that is to be saved
+
+	index():
+		-Route for user's account page
+
+		Returns: Render for index.html and associated parameters
+
+	createRoutine():
+		-Route for routine creation page
+	
+		Returns: Render for createroutine.html and associated parameters
+
+	routine():
+		-Route for an individual routine viewing
+
+		Parameters:
+		- routine_id: unique routine ID
+
+		Returns: Render for routine.html and associated parameters
+
+	update_routine():
+		-Route for routine updating
+
+		Parameters:
+		- routine_id: unique routine ID
+
+		Returns: Render for createroutine.html (re-updates despite same form) and associated parameters
+
+	delete_routine():
+		-Route for routine deletion
+
+		Parameters:
+		- routine_id: unique routine ID
+
+		Returns: Redirect to viewroutine()
+
+	viewroutine():
+		-Route for all user's routines & logged in home
+
+		Returns: Render for viewroutine.html and associated parameters
+
+	send_reset_email():
+		-Method used for sending a password reset send_reset_email
+
+		Parameters:
+		- user: The user in database that is requesting the email
+
+	reset_request():
+		-Route for page to request password reset
+
+		Returns: Render for reset_request.html and associated parameters
+
+	reset_token():
+		-Route for page to reset account password
+
+		Parameters:
+		- token: accepted token that was sent by password reset email (security)
+
+		Returns: Render for reset_request.html and associated parameters
+
+	searchresults(routine):
+		-Route for search results after inputting search in search bar field
+		-Used by other methods
+
+		Parameters:
+		- routine: The routines that are found from the search
+
+		Returns: Render for searchresults.html and associated parameters
+
+
 +++++++++
 Forms
 +++++++++
 .. automodule:: app.forms
 	:members:
-	:undoc-members:
+	
+	
+
 +++++++++
 Models
 +++++++++
 .. automodule:: app.models
 	:members:
-	:undoc-members:
+	
