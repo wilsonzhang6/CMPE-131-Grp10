@@ -5,7 +5,8 @@ from . import db #import from upper directory level
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from . import login_manager
-from run import app
+#from run import app
+from flask_mail import Mail
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 #from app import login #import from upper directory level
 

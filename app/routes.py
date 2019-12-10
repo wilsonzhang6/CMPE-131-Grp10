@@ -3,7 +3,8 @@
 from flask import current_app as app
 from flask import render_template, flash, redirect, url_for, request, abort
 from . import db
-from run import mail
+#from run import mail
+from flask_mail import Mail
 from .forms import LoginForm, RegistrationForm, CreateRoutineForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm, searchForm
 from .models import User, Routine
 from flask_login import current_user, login_user, logout_user, login_required
